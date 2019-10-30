@@ -1,4 +1,4 @@
-package Webshop;
+package no.kristiania;
 
 public class ProductController {
 }
