@@ -3,4 +3,8 @@
     *
     *
     *
-    
+ 2. Fungerende database på terminal
+ 3. sette opp en Httpservers som fungerer
+ 4. implementere databasen til http serveren
+ 5. Controllere. 
+ 
