@@ -5,43 +5,46 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDao<T> {
+
+
+
+public abstract class AbstractDao<ENTITY> {
     protected DataSource dataSource;
 
     public AbstractDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-
-    public long insert(T product, String sql) throws SQLException {
+    public void insert(ENTITY c, String sql) throws SQLException {
         try (Connection connection = dataSource.getConnection()){
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-                insertObject(product, stmt);
-                stmt.executeUpdate();
-
-                ResultSet generatedKeys = stmt.getGeneratedKeys();
-                generatedKeys.next();
-                return generatedKeys.getLong(1);
+            try (PreparedStatement statement = connection.prepareStatement(sql)){
+                mapToStatement(c, statement);
+                statement.executeUpdate();
             }
         }
     }
 
-    protected abstract void insertObject(T product, PreparedStatement stmt) throws SQLException;
+    protected abstract void mapToStatement(ENTITY c, PreparedStatement statement)throws SQLException;
 
-
-    public List<T> listAll(String sql) throws SQLException {
+    public List<ENTITY> listAll(String sql) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                try (ResultSet rs = stmt.executeQuery()) {
-                    List<T> products = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                try (ResultSet rs = statement.executeQuery()) {
+                    List<ENTITY> result = new ArrayList<>();
                     while(rs.next()) {
-                        products.add(readObject(rs));
+                        result.add(mapFromResultSet(rs));
                     }
-                    return products;
+                    return result;
                 }
             }
         }
     }
 
-    protected abstract T readObject(ResultSet rs) throws SQLException;
+    protected abstract ENTITY mapFromResultSet(ResultSet resultSet) throws SQLException;
 }
+
+
+
+
+
+

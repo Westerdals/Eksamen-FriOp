@@ -76,10 +76,10 @@ public class WebShopServer {
         Product product = new Product();
         System.out.println("please type the name of a new product");
         product.setName(input.readLine());
-        productDao.insert(product);
+        productDao.insert(product, "insert into PRODUCTS (name) values (?)");
     }
     private void getProducts() throws SQLException {
-        System.out.println(productDao.listAll() + "\n");
+        System.out.println(productDao.listAll("Select * from PRODUCTS") + "\n");
     }
 
 

@@ -23,8 +23,8 @@ public class ProductDaoTest {
         ProductDao dao = new ProductDao(dataSource);
         Product product = sampleProduct();
 
-        dao.insert(product);
-        Assertions.assertThat(dao.listAll())
+        dao.insert(product, "insert into PRODUCTS (name) values (?)");
+        Assertions.assertThat(dao.listAll("Select * from PRODUCTS"))
                 .extracting(Product::getName)
                 .contains(product.getName());
     }
