@@ -12,6 +12,7 @@ public abstract class AbstractDao<T> {
         this.dataSource = dataSource;
     }
 
+
     public long insert(T product, String sql) throws SQLException {
         try (Connection connection = dataSource.getConnection()){
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
