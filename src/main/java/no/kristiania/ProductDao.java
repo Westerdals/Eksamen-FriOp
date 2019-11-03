@@ -1,5 +1,6 @@
 package no.kristiania;
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,8 @@ public class ProductDao extends AbstractDao<Product> {
     }
 
 public void insert(Product product) throws SQLException {
-    insert(product, "insert into PRODUCTS (name) values (?)");
+    long id = insert(product, "insert into PRODUCTS (name) values (?)");
+    product.setId(id);
 }
 
     @Override
@@ -27,7 +29,23 @@ public void insert(Product product) throws SQLException {
    @Override
     public Product mapFromResultSet(ResultSet rs) throws SQLException {
         Product product = new Product();
+        product.setId(rs.getLong("id"));
         product.setName(rs.getString("name"));
         return product;
+    }
+
+    public Product retrieve(Long id) throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from PRODUCTS where id = ?")) {
+                statement.setLong(1, id);
+                try (ResultSet rs = statement.executeQuery()) {
+                    if(rs.next()){
+                        return mapFromResultSet(rs);
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

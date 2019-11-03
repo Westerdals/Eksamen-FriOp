@@ -3,6 +3,7 @@ import java.util.Objects;
 
 public class Product {
     private String name;
+    private long id;
 
     //==================================
     // Getter and Setters
@@ -28,8 +29,19 @@ public class Product {
         return Objects.hash(name);
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "\n\t\t* " +  name +"\n";
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
