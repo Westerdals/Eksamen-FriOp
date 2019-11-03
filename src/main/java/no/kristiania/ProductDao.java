@@ -1,6 +1,5 @@
 package no.kristiania;
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,18 +33,4 @@ public void insert(Product product) throws SQLException {
         return product;
     }
 
-    public Product retrieve(Long id) throws SQLException {
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from PRODUCTS where id = ?")) {
-                statement.setLong(1, id);
-                try (ResultSet rs = statement.executeQuery()) {
-                    if(rs.next()){
-                        return mapFromResultSet(rs);
-                    } else {
-                        return null;
-                    }
-                }
-            }
-        }
-    }
 }

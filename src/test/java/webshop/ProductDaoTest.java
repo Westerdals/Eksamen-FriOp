@@ -39,7 +39,7 @@ public class ProductDaoTest {
         Product product = sampleProduct();
         dao.insert(product);
         assertThat(product).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieve(product.getId()))
+        assertThat(dao.retrieve(product.getId(), "select * from PRODUCTS where id = ?"))
                 .isEqualToComparingFieldByField(product);
     }
 
