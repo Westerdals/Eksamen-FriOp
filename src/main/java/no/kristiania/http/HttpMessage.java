@@ -1,4 +1,4 @@
-package http;
+package no.kristiania.http;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class HttpMessage {
         }
     }
 
-    private int getContentLength() {
+    int getContentLength() {
         return Integer.parseInt(getHeader("content-length"));
     }
 

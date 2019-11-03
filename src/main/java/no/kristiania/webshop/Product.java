@@ -1,4 +1,4 @@
-package no.kristiania;
+package no.kristiania.webshop;
 import java.util.Objects;
 
 public class Product {
