@@ -1,8 +1,12 @@
 package no.kristiania.http;
 
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 public class HttpServer {
@@ -10,7 +14,7 @@ public class HttpServer {
     private ServerSocket serverSocket;
     private String assertRoot;
 
-    private HttpController defaultController = new fileHttpController(this);
+    private HttpController defaultController = new FileHttpController(this);
 
     private Map<String, HttpController> controllers = new HashMap<>();
 
@@ -23,29 +27,34 @@ public class HttpServer {
         new HttpServer(8080).start();
     }
 
-    private void start() {
+    public void start() {
         new Thread(() -> run()).start();
     }
 
-    private void run()  {
-        try {
-            Socket socket = serverSocket.accept();
+    private static final Logger Logger = LoggerFactory.getLogger(HttpServer.class);
 
-            String requestLine = HttpMessage.readLine(socket.getInputStream());
-            while (!HttpMessage.readLine(socket.getInputStream()).isBlank()){
+    private void run() {
+        while (true) {
+            try {
+                Socket socket = serverSocket.accept();
+
+                String requestLine = HttpMessage.readLine(socket.getInputStream());
+                // Logger.info("Handling request {}", requestLine);
+                while (!HttpMessage.readLine(socket.getInputStream()).isBlank()) {
+                }
+
+                String requestTarget = requestLine.split(" ")[1];
+                int questionPost = requestTarget.indexOf('?');
+                String requestPath = questionPost == -1 ? requestTarget : requestTarget.substring(0, questionPost);
+                Map<String, String> query = getQueryParameters(requestTarget);
+
+                controllers
+                        .getOrDefault(requestPath, defaultController)
+                        .handle(requestPath, query, socket.getOutputStream());
+
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
             }
-
-            String requestTarget = requestLine.split(" ")[1];
-            int questionPost = requestTarget.indexOf('?');
-            String requestPath = questionPost == -1 ? requestTarget : requestTarget.substring(0, questionPost);
-            Map<String, String> query = getQueryParameters(requestTarget);
-
-            controllers
-                    .getOrDefault(requestPath, defaultController)
-                    .handle(requestPath, query, socket.getOutputStream());
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -70,5 +79,13 @@ public class HttpServer {
 
     public String getAssertRoot() {
         return assertRoot;
+    }
+
+    public void setAssertRoot(String assertRoot) {
+        this.assertRoot = assertRoot;
+    }
+
+    public void addController(String requestPath, HttpController controller){
+        controllers.put(requestPath, controller);
     }
 }

@@ -6,11 +6,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 public class HttpMessage {
+    final String startLine;
     protected String body;
-    protected String startLine;
     protected Map<String, String> headers = new HashMap<>();
+//    private static final Logger Logger = LoggerFactory.getLogger(HttpMessage.class);
+
+
+
+    public static String readLine(InputStream inputStream) throws IOException {
+        StringBuilder line = new StringBuilder();
+        int c;
+        while((c = inputStream.read()) != -1) {
+            if(c == '\r') {
+                inputStream.read();
+                break;
+            }
+            line.append((char)c);
+        }
+ //       logger.debug("Read line {}", line);
+        return line.toString();
+    }
 
     public HttpMessage(InputStream inputStream) throws IOException {
         startLine = readLine(inputStream);
@@ -34,19 +50,6 @@ public class HttpMessage {
         return headers.get(headerName.toLowerCase());
     }
 
-    public static String readLine(InputStream inputStream) throws IOException {
-        StringBuilder line = new StringBuilder();
-        int c;
-        while((c = inputStream.read()) != -1) {
-            if(c == '\r') {
-                inputStream.read();
-                break;
-            }
-            line.append((char)c);
-        }
-        return line.toString();
-    }
-
     protected String readBytes(InputStream inputStream, int contentLength) throws IOException {
      StringBuilder body = new StringBuilder();
         for (int i = 0; i < contentLength; i++) {
@@ -58,4 +61,6 @@ public class HttpMessage {
     public String getStartLine() {
         return startLine;
     }
+
+
 }

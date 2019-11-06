@@ -2,9 +2,10 @@ package no.kristiania.http;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.Map;
 
 public interface HttpController {
 
-    void handle(String requestPath, Map<String, String> query, OutputStream outputStream) throws IOException;
+    void handle(String requestPath, Map<String, String> query, OutputStream outputStream) throws IOException, SQLException;
 }
