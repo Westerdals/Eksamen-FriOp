@@ -8,8 +8,12 @@
 <body>
 <h1>Add project member</h1>
 
-<form method="POST" action="/members">
+<form action=""><label>Product <select name="" id="products"></select></label></form>
+<form method="POST" action="/products">
     <label>Member name: <input type="text" name="full_name" /></label>
+    <button>Add</button>
+</form>
+
     <button>Add</button>
 </form>
 
@@ -17,4 +21,14 @@
     <a href=".">Return to front page</a>
 </div>
 </body>
+<script>
+    var products = document.getElementById("products");
+    fetch("/api/products")
+        .then(function (result) {
+            return result.text();
+        })
+    .then(function (text) {
+        products.innerHTML = text;
+    });
+</script>
 </html>

@@ -1,14 +1,14 @@
 package no.kristiania.http;
 
-import org.junit.platform.commons.logging.Logger;
-import org.junit.platform.commons.logging.LoggerFactory;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static no.kristiania.http.HttpMessage.readHeaders;
+
 public class HttpServer {
 
     private ServerSocket serverSocket;
@@ -31,18 +31,18 @@ public class HttpServer {
         new Thread(() -> run()).start();
     }
 
-    private static final Logger Logger = LoggerFactory.getLogger(HttpServer.class);
 
     private void run() {
         while (true) {
-            try {
-                Socket socket = serverSocket.accept();
+            try(Socket socket = serverSocket.accept()) {
 
                 String requestLine = HttpMessage.readLine(socket.getInputStream());
-                // Logger.info("Handling request {}", requestLine);
-                while (!HttpMessage.readLine(socket.getInputStream()).isBlank()) {
-                }
+                if(requestLine.isBlank()) continue;
 
+                Map<String, String> headers = readHeaders(socket.getInputStream());
+                String body = HttpMessage.readBody(headers, socket.getInputStream());
+
+                String requestAction = requestLine.split(" ")[0];
                 String requestTarget = requestLine.split(" ")[1];
                 int questionPost = requestTarget.indexOf('?');
                 String requestPath = questionPost == -1 ? requestTarget : requestTarget.substring(0, questionPost);
@@ -50,25 +50,29 @@ public class HttpServer {
 
                 controllers
                         .getOrDefault(requestPath, defaultController)
-                        .handle(requestPath, query, socket.getOutputStream());
-
+                        .handle(requestAction, requestPath, query, body, socket.getOutputStream());
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private Map<String, String> getQueryParameters(String requestTarget) {
-        Map<String, String> parameters = new HashMap<>();
+     static Map<String, String> getQueryParameters(String requestTarget) {
         int questionPos = requestTarget.indexOf('?');
         if(questionPos > 0) {
             String queryString = requestTarget.substring(questionPos + 1);
-            for(String parameter : queryString.split("&")){
-                int equalsPos = parameter.indexOf('=');
-                String parameterName = parameter.substring(0, equalsPos);
-                String parameterValue = parameter.substring(equalsPos + 1);
-                parameters.put(parameterName, parameterValue);
-            }
+            return parseQueryString(queryString);
+        }
+        return new HashMap<>();
+    }
+
+    public static Map<String, String> parseQueryString(String queryString) {
+        Map<String, String> parameters = new HashMap<>();
+        for(String parameter : queryString.split("&")){
+            int equalsPos = parameter.indexOf('=');
+            String parameterName = parameter.substring(0, equalsPos);
+            String parameterValue = parameter.substring(equalsPos + 1);
+            parameters.put(parameterName, parameterValue);
         }
         return parameters;
     }

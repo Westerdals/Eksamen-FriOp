@@ -1,7 +1,5 @@
 package no.kristiania.http;
 
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,12 +14,10 @@ class FileHttpController implements HttpController {
         this.httpServer = httpServer;
     }
 
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(FileHttpController.class);
 
     @Override
-    public void handle(String requestPath, Map<String, String> query, OutputStream outputStream) throws IOException {
-        File file = new File(httpServer.getAssertRoot() + requestPath);
-        Logger.debug("Request file {}", file);
+    public void handle(String requestMethod, String path, Map<String, String> query, String body, OutputStream outputStream) throws IOException {
+        File file = new File(httpServer.getAssertRoot() + path);
         if(file.isDirectory()){
             file = new File(file,"index.html");
         }

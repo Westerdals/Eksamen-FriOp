@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,18 +8,20 @@
 <body>
 <h1>Project view</h1>
 
-<div id="projectMembers"></div>
+<div id="products"></div>
 
 <div>
-    <a href="newWorker.html">Add new project member</a>
+    <a href="AddProductToOrder.html">Add new project member</a>
+    <a href="createProduct.html">Add new project member</a>
+
 </div>
 </body>
 <script>
-    fetch("/projectMembers")
+    fetch("/products")
         .then(function(response) {
             return response.text();
         }).then(function(text) {
-        document.getElementById("projectMembers").innerHTML = text;
+        document.getElementById("products").innerHTML = text;
     });
 </script>
 </html>
