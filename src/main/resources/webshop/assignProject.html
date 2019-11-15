@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Assign project to member</h1>
+
+<form action=""><label>Members <select name="" id="members"></select></label></form>
+<h2>Assign to:</h2>
+<form action=""><label>Projects <select name="" id="projects"></select></label></form>
+
+<ul>
+    <li> <a href="index.html">Home</a></li>
+
+</ul>
+</body>
+
+<script>
+    var projects = document.getElementById("projects");
+    fetch("/api/projects")
+        .then(function (result) {
+            return result.text();
+        })
+        .then(function (text) {
+            projects.innerHTML = text;
+        });
+
+    var members = document.getElementById("members");
+    fetch("/api/members")
+        .then(function (result) {
+            return result.text();
+        })
+        .then(function (text) {
+            members.innerHTML = text;
+        });
+
+</script>
+</html>
