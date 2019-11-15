@@ -3,6 +3,7 @@ import java.util.Objects;
 
 public class Product {
     private String name;
+    private String lName;
     private long id;
 
     //==================================
@@ -16,12 +17,23 @@ public class Product {
         return name;
     }
 
+    public String getLName() {
+        return lName;
+    }
+
+    public void setLName(String lName) {
+        this.lName = lName;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(name, product.name);
+        return id == product.id &&
+                name.equals(product.name) &&
+                lName.equals(product.lName);
     }
 
     @Override
@@ -41,6 +53,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
+                "lName='" + lName + '\'' +
                 ", id=" + id +
                 '}';
     }

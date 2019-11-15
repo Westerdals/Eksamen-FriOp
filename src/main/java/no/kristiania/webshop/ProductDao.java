@@ -12,13 +12,13 @@ public class ProductDao extends AbstractDao<Product> {
     }
 
 public void insert(Product product) throws SQLException {
-    long id = insert(product, "insert into PRODUCTS (name) values (?)");
+    long id = insert(product, "insert into PRODUCTS (name, lName) values (?, ?)");
     product.setId(id);
 }
-
     @Override
     protected void mapToStatement(Product product, PreparedStatement statement) throws SQLException {
         statement.setString(1, product.getName());
+        statement.setString(2, product.getLName());
     }
 
     public List<Product> listAll() throws SQLException {
@@ -30,6 +30,7 @@ public void insert(Product product) throws SQLException {
         Product product = new Product();
         product.setId(rs.getLong("id"));
         product.setName(rs.getString("name"));
+        product.setLName(rs.getString("lName"));
         return product;
     }
 

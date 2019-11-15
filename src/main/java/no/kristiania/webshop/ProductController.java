@@ -31,13 +31,14 @@ public class ProductController implements HttpController {
                 Product product = new Product();
 
                 product.setName(query.get("name"));
+                product.setLName(query.get("lName"));
                 productDao.insert(product);
-                /*outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
-                        "Location: http://localhost:8080/\r\n" +
+                outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
+                        "Location: http://localhost:8080/AddProductToOrder.html\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
 
-               */ return;
+                return;
             }
             String status = "200";
             String contentType = "text/html";
@@ -66,7 +67,7 @@ public class ProductController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = productDao.listAll().stream()
-                .map(p -> String.format("<option value='%s'>%s</option>", p.getId(), p.getName()))
+                .map(p -> String.format("<option value='%s'>%s %s</option>", p.getId(), p.getName(), p.getLName()))
                 .collect(Collectors.joining(""));
         return body;
     }
