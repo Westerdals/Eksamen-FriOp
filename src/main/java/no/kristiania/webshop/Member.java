@@ -1,7 +1,7 @@
 package no.kristiania.webshop;
 import java.util.Objects;
 
-public class Product {
+public class Member {
     private String name;
     private String lName;
     private long id;
@@ -30,10 +30,10 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id == product.id &&
-                name.equals(product.name) &&
-                lName.equals(product.lName);
+        Member member = (Member) o;
+        return id == member.id &&
+                name.equals(member.name) &&
+                lName.equals(member.lName);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "Member{" +
                 "name='" + name + '\'' +
                 "lName='" + lName + '\'' +
                 ", id=" + id +

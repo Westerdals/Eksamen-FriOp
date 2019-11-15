@@ -11,30 +11,30 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ProductController implements HttpController {
+public class MemberController implements HttpController {
 
-    private final ProductDao productDao;
+    private final MemberDao memberDao;
 
-    public ProductController(ProductDao productDao) {
-        this.productDao = productDao;
+    public MemberController(MemberDao memberDao) {
+        this.memberDao = memberDao;
     }
 
 
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> query, String requestBody, OutputStream outputStream) throws IOException, SQLException {
         try {
             if (requestAction.equals("POST")) {
               query = HttpServer.parseQueryString(requestBody);
-                Product product = new Product();
+                Member member = new Member();
 
-                product.setName(query.get("name"));
-                product.setLName(query.get("lName"));
-                productDao.insert(product);
+                member.setName(query.get("name"));
+                member.setLName(query.get("lName"));
+                memberDao.insert(member);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
-                        "Location: http://localhost:8080/AddProductToOrder.html\r\n" +
+                        "Location: http://localhost:8080/AddMemberToOrder.html\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
 
@@ -66,7 +66,7 @@ public class ProductController implements HttpController {
     }
 
     public String getBody() throws SQLException {
-        String body = productDao.listAll().stream()
+        String body = memberDao.listAll().stream()
                 .map(p -> String.format("<option value='%s'>%s %s</option>", p.getId(), p.getName(), p.getLName()))
                 .collect(Collectors.joining(""));
         return body;

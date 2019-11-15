@@ -10,15 +10,15 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductDaoTest {
+public class MemberDaoTest {
 
     private static Random random = new Random();
-    private ProductDao dao;
+    private MemberDao dao;
 
     @BeforeEach
     void setUp() {
         JdbcDataSource dataSource = createDataSource();
-        dao = new ProductDao(dataSource);
+        dao = new MemberDao(dataSource);
     }
 
     static JdbcDataSource createDataSource() {
@@ -30,26 +30,26 @@ public class ProductDaoTest {
 
     @Test
     void shouldListSavedProducts() throws SQLException {
-        Product product = sampleProduct();
-        dao.insert(product, "insert into PRODUCTS (name) values (?)");
+        Member member = sampleProduct();
+        dao.insert(member, "insert into PRODUCTS (name) values (?)");
         assertThat(dao.listAll("Select * from PRODUCTS"))
-                .extracting(Product::getName)
-                .contains(product.getName());
+                .extracting(Member::getName)
+                .contains(member.getName());
     }
     @Test
     void shouldRetrieveSavedProduct() throws SQLException {
-        Product product = sampleProduct();
-        dao.insert(product);
-        assertThat(product).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieve(product.getId(), "select * from PRODUCTS where id = ?"))
-                .isEqualToComparingFieldByField(product);
+        Member member = sampleProduct();
+        dao.insert(member);
+        assertThat(member).hasNoNullFieldsOrProperties();
+        assertThat(dao.retrieve(member.getId(), "select * from PRODUCTS where id = ?"))
+                .isEqualToComparingFieldByField(member);
     }
 
 
-    static Product sampleProduct() {
-        Product product = new Product();
-        product.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        return product;
+    static Member sampleProduct() {
+        Member member = new Member();
+        member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        return member;
     }
 
     private static String PickOne(String[] alternatives) {
@@ -57,4 +57,4 @@ public class ProductDaoTest {
     }
 
 
-}// end ProductDaoTest
+}// end MemberDaoTest

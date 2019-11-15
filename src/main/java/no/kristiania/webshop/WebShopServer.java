@@ -24,7 +24,7 @@ public class WebShopServer {
 
         HttpServer server = new HttpServer(8080);
         server.setAssertRoot("src/main/resources/webshop");
-        server.addController("/api/products", new ProductController(new ProductDao(dataSource)));
+        server.addController("/api/members", new MemberController(new MemberDao(dataSource)));
         server.start();
     }
 }// end WebShopServer

@@ -8,9 +8,9 @@
 <body>
 <h1>Add project member</h1>
 
-<form action=""><label>Product <select name="" id="products"></select></label></form>
+<form action=""><label>Product <select name="" id="members"></select></label></form>
 
-<form action="/api/products" method="POST" >
+<form action="/api/members" method="POST" >
     <label>Member name:
     <input type="text" name="name" />
 </label>
@@ -26,13 +26,13 @@
 </body>
 <script>
 
-    var products = document.getElementById("products");
-    fetch("/api/products")
+    var members = document.getElementById("members");
+    fetch("/api/members")
         .then(function (result) {
             return result.text();
         })
     .then(function (text) {
-        products.innerHTML = text;
+        members.innerHTML = text;
     });
 
 </script>

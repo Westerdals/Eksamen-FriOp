@@ -8,22 +8,22 @@
 <body>
 <h1>Project view</h1>
 
-<form action=""><label>Product <select name="" id="products"></select></label></form>
+<form action=""><label>Product <select name="" id="members"></select></label></form>
 
 <div>
-    <a href="AddProductToOrder.html">Add new project member</a>
-    <a href="createProduct.html">create project</a>
+    <a href="AddMemberToOrder.html">Add new project member</a>
+    <a href="createMember.html">create project</a>
 
 </div>
 </body>
 <script>
-    var products = document.getElementById("products");
-    fetch("/api/products")
+    var members = document.getElementById("members");
+    fetch("/api/members")
         .then(function (result) {
             return result.text();
         })
         .then(function (text) {
-            products.innerHTML = text;
+            members.innerHTML = text;
         });
 </script>
 
