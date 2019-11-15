@@ -6,24 +6,31 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<form action="/api/products" method="post">
+<h1>Create New project</h1>
+
+<form action=""><label>Product <select name="" id="projects"></select></label></form>
+<form action="/api/projects" method="post">
     <label>
         Product name:
         <input type="text" name="name" />
     </label>
         <button>Save</button>
 </form>
+
+<div>
+    <a href="index.html">Return to front page</a>
+</div>
+
 </body>
 <script>
-   /*
-    fetch("/products")
-        .then(function(response) {
-            return response.text();
-        }).then(function(text) {
-        document.getElementById("products").innerHTML = text;
-    });
-
-    */
+    var projects = document.getElementById("projects");
+    fetch("/api/projects")
+        .then(function (result) {
+            return result.text();
+        })
+        .then(function (text) {
+            projects.innerHTML = text;
+        });
 
   </script>
 
