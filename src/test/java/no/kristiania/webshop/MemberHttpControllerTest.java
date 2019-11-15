@@ -1,5 +1,8 @@
 package no.kristiania.webshop;
 
+import no.kristiania.webshop.members.Member;
+import no.kristiania.webshop.members.MemberController;
+import no.kristiania.webshop.members.MemberDao;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;

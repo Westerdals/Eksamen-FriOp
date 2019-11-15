@@ -1,4 +1,6 @@
-package no.kristiania.webshop;
+package no.kristiania.webshop.members;
+import no.kristiania.webshop.AbstractDao;
+
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

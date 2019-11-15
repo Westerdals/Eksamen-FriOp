@@ -1,4 +1,4 @@
-package no.kristiania.webshop;
+package no.kristiania.webshop.Projects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;

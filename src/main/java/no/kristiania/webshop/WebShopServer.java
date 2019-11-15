@@ -1,6 +1,10 @@
 package no.kristiania.webshop;
 
 import no.kristiania.http.HttpServer;
+import no.kristiania.webshop.Projects.ProjectController;
+import no.kristiania.webshop.Projects.ProjectDao;
+import no.kristiania.webshop.members.MemberController;
+import no.kristiania.webshop.members.MemberDao;
 import org.flywaydb.core.Flyway;
 import org.postgresql.ds.PGSimpleDataSource;
 

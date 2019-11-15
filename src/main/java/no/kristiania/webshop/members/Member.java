@@ -1,4 +1,4 @@
-package no.kristiania.webshop;
+package no.kristiania.webshop.members;
 import java.util.Objects;
 
 public class Member {

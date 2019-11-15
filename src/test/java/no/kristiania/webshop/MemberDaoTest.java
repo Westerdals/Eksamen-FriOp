@@ -1,5 +1,7 @@
 package no.kristiania.webshop;
 
+import no.kristiania.webshop.members.Member;
+import no.kristiania.webshop.members.MemberDao;
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
