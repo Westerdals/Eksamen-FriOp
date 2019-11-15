@@ -16,7 +16,7 @@ class FileHttpController implements HttpController {
 
 
     @Override
-    public void handle(String requestMethod, String path, Map<String, String> query, String body, OutputStream outputStream) throws IOException {
+    public void handle(String requestPath, String path, Map<String, String> query, String body, OutputStream outputStream) throws IOException {
         File file = new File(httpServer.getAssertRoot() + path);
         if(file.isDirectory()){
             file = new File(file,"index.html");
@@ -36,6 +36,7 @@ class FileHttpController implements HttpController {
                     "Connection: close\r\n" +
                     "\r\n" +
                     "Not found").getBytes());
+
         }
     }
 }

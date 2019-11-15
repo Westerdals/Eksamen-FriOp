@@ -2,6 +2,8 @@ package no.kristiania.webshop;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,21 +21,23 @@ public class ProductController implements HttpController {
 
 
 
-
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> query, String requestBody, OutputStream outputStream) throws IOException, SQLException {
         try {
             if (requestAction.equals("POST")) {
-                HttpServer.parseQueryString(requestBody);
+              query = HttpServer.parseQueryString(requestBody);
                 Product product = new Product();
-                product.setName(query.get("productName"));
+
+                product.setName(query.get("name"));
                 productDao.insert(product);
-                outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
+                /*outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
-                return;
+
+               */ return;
             }
             String status = "200";
             String contentType = "text/html";
@@ -47,6 +51,7 @@ public class ProductController implements HttpController {
                     body).getBytes());
 
         } catch (SQLException e) {
+            logger.error("While handling request {}", requestPath, e);
             String message = e.toString();
             outputStream.write(("HTTP/1.1 500 Internal serverError\r\n" +
                     "Content-type: text/plain\r\n" +

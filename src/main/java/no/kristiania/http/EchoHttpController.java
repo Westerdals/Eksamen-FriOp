@@ -7,7 +7,8 @@ class EchoHttpController implements HttpController {
     @Override
     public void handle(String requestAction, String path, Map<String, String> query, String body, OutputStream outputStream) throws IOException {
        if(requestAction.equals("POST")){
-           query = HttpServer.parseQueryString(body);
+           //query = HttpServer.parseQueryString(body);
+            query = HttpServer.getQueryParameters(body);
        }
 
         String status = query.getOrDefault("Status","200");

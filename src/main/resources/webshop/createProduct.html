@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new product</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <form action="/api/products" method="post">
     <label>
         Product name:
-        <input type="text" name="productName" />
-    </label>
-    <label>
-        price:
-        <input type="text" name="price">
+        <input type="text" name="name" />
     </label>
         <button>Save</button>
 </form>
 </body>
-</html>
+<script>
+   /*
+    fetch("/products")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("products").innerHTML = text;
+    });
+
+    */
+
+  </script>
+
+    </html>

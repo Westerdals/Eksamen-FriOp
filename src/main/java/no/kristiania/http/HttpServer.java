@@ -1,5 +1,8 @@
 package no.kristiania.http;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -31,6 +34,7 @@ public class HttpServer {
         new Thread(() -> run()).start();
     }
 
+    private static Logger logger = LoggerFactory.getLogger(HttpServer.class);
 
     private void run() {
         while (true) {
@@ -51,18 +55,30 @@ public class HttpServer {
                 controllers
                         .getOrDefault(requestPath, defaultController)
                         .handle(requestAction, requestPath, query, body, socket.getOutputStream());
+                logger.info("handling request {} {}", requestAction, requestPath);
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-     static Map<String, String> getQueryParameters(String requestTarget) {
+     public static Map<String, String> getQueryParameters(String requestLine) {
+       String requestTarget;
+
+        //int questionPos = requestTarget.indexOf('?');
+        if(requestLine.split(" ").length > 1) {
+            requestTarget = requestLine.split(" ")[1];
+        } else {
+            requestTarget = "/";
+        }
         int questionPos = requestTarget.indexOf('?');
-        if(questionPos > 0) {
+        if(questionPos != -1){
             String queryString = requestTarget.substring(questionPos + 1);
             return parseQueryString(queryString);
         }
+            //String queryString = requestTarget.substring(questionPos + 1);
+            //return parseQueryString(queryString);
+        //}
         return new HashMap<>();
     }
 
@@ -77,9 +93,6 @@ public class HttpServer {
         return parameters;
     }
 
-    public int getPort(){
-        return serverSocket.getLocalPort();
-    }
 
     public String getAssertRoot() {
         return assertRoot;
