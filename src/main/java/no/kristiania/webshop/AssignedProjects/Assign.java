@@ -3,24 +3,24 @@ package no.kristiania.webshop.AssignedProjects;
 import java.util.Objects;
 
 public class Assign {
-    private String name;
-    private String pName;
+    private String memberName;
+    private String projectName;
     private long id;
 
 
-    public void setName(String name){
-        this.name = name;
+    public void setMemberName(String memberName){
+        this.memberName = memberName;
     }
-    public String getName(){
-        return name;
-    }
-
-    public String getPName() {
-        return pName;
+    public String getMemberName(){
+        return memberName;
     }
 
-    public void setPName(String pName) {
-        this.pName = pName;
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String pName) {
+        this.projectName = pName;
     }
 
     public long getId() {
@@ -37,20 +37,20 @@ public class Assign {
         if (o == null || getClass() != o.getClass()) return false;
         Assign assign = (Assign) o;
         return id == assign.id &&
-                name.equals(assign.name) &&
-                pName.equals(assign.pName);
+                memberName.equals(assign.memberName) &&
+                projectName.equals(assign.projectName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(memberName);
     }
 
     @Override
     public String toString() {
         return "Assign{" +
-                "name='" + name + '\'' +
-                "pName='" + pName + '\'' +
+                "name='" + memberName + '\'' +
+                "pName='" + projectName + '\'' +
                 ", id=" + id +
                 '}';
     }

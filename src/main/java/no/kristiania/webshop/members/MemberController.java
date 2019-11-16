@@ -37,7 +37,7 @@ public class MemberController implements HttpController {
 
                 memberDao.insert(member);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
-                        "Location: http://localhost:8080/AddMemberToOrder.html\r\n" +
+                        "Location: http://localhost:8080/AddMember.html\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
 
