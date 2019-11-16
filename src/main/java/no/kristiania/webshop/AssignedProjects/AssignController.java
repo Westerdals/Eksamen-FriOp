@@ -28,11 +28,11 @@ public class AssignController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Assign assign = new Assign();
 
-                assign.setName(query.get("name"));
-                assign.setPName(query.get("pName"));
+                assign.setMemberName(query.get("memberName"));
+                assign.setProjectName(query.get("projectName"));
                 assignDao.insert(assign);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
-                        "Location: http://localhost:8080/assignProject.html\r\n" +
+                        "Location: http://localhost:8080/JoinTables.html\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
 
@@ -63,7 +63,7 @@ public class AssignController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = assignDao.listAll().stream()
-                .map(p -> String.format("<option value='%s'>%s %s</option>", p.getId(), p.getName(), p.getPName()))
+                .map(p -> String.format("<option value='%s'>MemberID: %s ProjectID: %s</option>", p.getId(), p.getMemberName(), p.getProjectName()))
                 .collect(Collectors.joining(""));
         return body;
     }

@@ -13,10 +13,14 @@ public class MemberDao extends AbstractDao<Member> {
         super(dataSource);
     }
 
-public void insert(Member member) throws SQLException {
-    long id = insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
-    member.setId(id);
-}
+    public void insert(Member member) throws SQLException {
+        long id = insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
+     member.setId(id);
+    }
+    public void alter(Member member) throws SQLException {
+     long id = insert(member, "update MEMBERS SET (name, lName) WHERE(id) values (?, ?, ?)");
+        member.setId(id);
+    }
     @Override
     protected void mapToStatement(Member member, PreparedStatement statement) throws SQLException {
         statement.setString(1, member.getName());

@@ -6,26 +6,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Assign project to member</h1>
+<h1>Assign members to project </h1>
 
-<form action=""><label>Members <select name="" id="members"></select></label></form>
+<form action="/api/jointables" method="post">
 
-<h2>Assign to:</h2>
+<label>Members<select name="memberName" id="members"></select></label>
 
-<form action=""><label>Projects <select name="" id="projects"></select></label></form>
+    <h2> Assign to: </h2>
+
+    <label>projects<select name="projectName" id="projects"></select></label>
+
+    <h2></h2>
+
+    <button>Save</button>
+</form>
 
 
-<form action=""><label>AMembers <select name="" id="join"></select></label></form>
-<select id="ddlViewBy">
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-</select>
-<h2></h2>
-<button>Save</button>
-
+<form action=""><label>Assigned <select name="" id="join"></select></label></form>
 <ul>
-    <li> <a href="index.html">Home</a></li>
+    <li> <a id="home" href="index.html">Home</a></li>
 
 </ul>
 </body>

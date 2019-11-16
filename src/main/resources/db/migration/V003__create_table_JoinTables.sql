@@ -1,6 +1,6 @@
 CREATE TABLE JOINTABELS(
    id serial primary key,
-    name VARCHAR (100) not null,
-    pName VARCHAR (100) not null
+    memberName VARCHAR (100) not null,
+    projectName VARCHAR (100) not null
 
 )
