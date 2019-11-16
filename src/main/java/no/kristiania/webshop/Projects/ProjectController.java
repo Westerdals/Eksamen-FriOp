@@ -2,6 +2,7 @@ package no.kristiania.webshop.Projects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
+import no.kristiania.webshop.members.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,9 @@ public class ProjectController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Project project = new Project();
 
-                project.setName(query.get("name"));
+
+                String tmpName = Member.decodeValue(query.get("name"));
+                project.setName(tmpName);
                 projectDao.insert(project);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/AddProject.html\r\n" +

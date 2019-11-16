@@ -2,6 +2,7 @@ package no.kristiania.webshop.AssignedProjects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
+import no.kristiania.webshop.members.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +29,11 @@ public class AssignController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Assign assign = new Assign();
 
-                assign.setMemberName(query.get("memberName"));
-                assign.setProjectName(query.get("projectName"));
+
+                String tmpMemberName = Member.decodeValue(query.get("memberName"));
+                String tmpProjectName = Member.decodeValue(query.get("projectName"));
+                assign.setMemberName(tmpMemberName);
+                assign.setProjectName(tmpProjectName);
                 assignDao.insert(assign);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/JoinTables.html\r\n" +
