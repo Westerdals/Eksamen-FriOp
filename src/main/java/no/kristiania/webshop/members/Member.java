@@ -1,4 +1,7 @@
 package no.kristiania.webshop.members;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Member {
@@ -34,6 +37,14 @@ public class Member {
         return id == member.id &&
                 name.equals(member.name) &&
                 lName.equals(member.lName);
+    }
+
+    public static String decodeValue(String value) {
+        try {
+            return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex.getCause());
+        }
     }
 
     @Override

@@ -120,10 +120,10 @@ body {
 ## Vedlegg: Sjekkliste for innlevering
 
 * [ ] Dere har registrert link til GitHub repository i Wiseflow
-* [ ] Koden er sjekket inn på github.com/Westerdals-repository
+* [X] Koden er sjekket inn på github.com/Westerdals-repository
 * [ ] GitHub repository er private, men delt med gruppen dere gjør hverandrevurdering på
 * [ ] Dere har mottatt minst 2 positive og 2 korrektive GitHub issues i github repository fra en annen gruppe
-* [ ] Dere har committed kode med begge prosjektdeltagernes GitHub konto (alternativt: README beskriver arbeidsform)
+* [X] Dere har committed kode med begge prosjektdeltagernes GitHub konto (alternativt: README beskriver arbeidsform)
 
 ### README.md
 
@@ -138,21 +138,21 @@ body {
 * [ ] `mvn package` bygger en executable jar-fil
 * [ ] Koden inneholder et godt sett med tester
 * [ ] `java -jar target/...jar` (etter `mvn package`) lar bruker legge til å liste ut data fra databasen
-* [ ] Programmet leser `dataSource.url`, `dataSource.username` og `dataSource.password` fra `task-manager.properties` for å connecte til databasen
-* [ ] Programmet bruker Flywaydb for å sette opp databaseskjema
-* [ ] Server skriver nyttige loggmeldinger, inkludert informasjon om hvilken URL den kjører på ved oppstart
-* [ ] `.gitignore` inneholder nødvendige filer
+* [X] Programmet leser `dataSource.url`, `dataSource.username` og `dataSource.password` fra `task-manager.properties` for å connecte til databasen
+* [X] Programmet bruker Flywaydb for å sette opp databaseskjema
+* [X] Server skriver nyttige loggmeldinger, inkludert informasjon om hvilken URL den kjører på ved oppstart
+* [X] `.gitignore` inneholder nødvendige filer
 
 ### Funksjonalitet
 
-* [ ] Programmet kan liste prosjektdeltagere fra databasen
-* [ ] Programmet lar bruker opprette nye prosjektdeltagere i databasen
-* [ ] Programmet kan opprette og liste prosjektoppgaver fra databasen
+* [X] Programmet kan liste prosjektdeltagere fra databasen
+* [X] Programmet lar bruker opprette nye prosjektdeltagere i databasen
+* [X] Programmet kan opprette og liste prosjektoppgaver fra databasen
 
 
 ## Vedlegg: Mulighet for ekstrapoeng
 
-* [ ] Avansert datamodell (mer enn 3 tabeller)
+* [X] Avansert datamodell (mer enn 3 tabeller)
 * [ ] Avansert funksjonalitet (redigering av prosjektmedlemmer, statuskategorier, prosjekter)
 * [ ] Implementasjon av cookies for å konstruere sesjoner
 * [ ] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)

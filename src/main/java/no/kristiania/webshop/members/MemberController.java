@@ -30,8 +30,11 @@ public class MemberController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Member member = new Member();
 
-                member.setName(query.get("name"));
-                member.setLName(query.get("lName"));
+                String tmpName = Member.decodeValue(query.get("name"));
+                String tmplName = Member.decodeValue(query.get("lName"));
+                member.setName(tmpName);
+                member.setLName(tmplName);
+
                 memberDao.insert(member);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/AddMemberToOrder.html\r\n" +

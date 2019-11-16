@@ -2,6 +2,9 @@ package no.kristiania.webshop.members;
 import no.kristiania.webshop.AbstractDao;
 
 import javax.sql.DataSource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,10 +16,15 @@ public class MemberDao extends AbstractDao<Member> {
         super(dataSource);
     }
 
-public void insert(Member member) throws SQLException {
-    long id = insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
-    member.setId(id);
-}
+    public void insert(Member member) throws SQLException {
+        long id = insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
+        member.setId(id);
+    }
+
+
+
+
+
     @Override
     protected void mapToStatement(Member member, PreparedStatement statement) throws SQLException {
         statement.setString(1, member.getName());
