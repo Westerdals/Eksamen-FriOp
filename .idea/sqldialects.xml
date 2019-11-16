@@ -4,6 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/no/kristiania/webshop/members/MemberDao.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V001__crearte_table_members.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V002__create_table_Projects.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V003__create_table_AssignedMembers.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V003__create_table_JoinTables.sql" dialect="GenericSQL" />
   </component>
 </project>

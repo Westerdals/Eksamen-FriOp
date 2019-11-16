@@ -1,6 +1,8 @@
 package no.kristiania.webshop;
 
 import no.kristiania.http.HttpServer;
+import no.kristiania.webshop.AssignedProjects.AssignController;
+import no.kristiania.webshop.AssignedProjects.AssignDao;
 import no.kristiania.webshop.Projects.ProjectController;
 import no.kristiania.webshop.Projects.ProjectDao;
 import no.kristiania.webshop.members.MemberController;
@@ -30,6 +32,7 @@ public class WebShopServer {
         server.setAssertRoot("src/main/resources/webshop");
         server.addController("/api/members", new MemberController(new MemberDao(dataSource)));
         server.addController("/api/projects", new ProjectController(new ProjectDao(dataSource)));
+        server.addController("/api/jointables", new AssignController(new AssignDao(dataSource)));
         server.start();
     }
 }// end WebShopServer
