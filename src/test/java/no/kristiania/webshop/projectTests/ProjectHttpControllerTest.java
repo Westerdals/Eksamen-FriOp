@@ -19,7 +19,7 @@ public class ProjectHttpControllerTest {
 
         ProjectController controller = new ProjectController(projectDao);
         assertThat(controller.getBody())
-                .contains("<option id='" + project.getId() +"'>" + project.getName() + " ->S " + project.getPStatus() + "</option>");
+                .contains("<option id='" + project.getId() +"'>" + project.getName() + " - Status: " + project.getPStatus() + "</option>");
     }
 }
 

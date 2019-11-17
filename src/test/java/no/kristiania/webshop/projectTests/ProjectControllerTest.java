@@ -20,6 +20,6 @@ class ProjectControllerTest {
 
         ProjectController controller = new ProjectController(dao);
         assertThat(controller.getBody())
-                .contains(String.format("<option id='%s'>%s ->S %s</option>", project1.getId(), project1.getName(), project1.getPStatus()));
+                .contains(String.format("<option id='%s'>%s - Status: %s</option>", project1.getId(), project1.getName(), project1.getPStatus()));
     }
 }

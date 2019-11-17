@@ -13,12 +13,8 @@ public class JoinHttpControllerTest {
 
     @Test
     void shouldReturnAllData() throws SQLException {
-        AssignDao assignDao = new AssignDao(JoinDaoTest.createDataSource());
-        Assign assign = JoinDaoTest.sampleData();
-        assignDao.insert(assign);
-    void shouldReturnAllProducts() throws SQLException {
         JoinDao joinDao = new JoinDao(JoinDaoTest.createDataSource());
-        Join join = JoinDaoTest.sampleProduct();
+        Join join = JoinDaoTest.sampleData();
         joinDao.insert(join);
 
         JoinController controller = new JoinController(joinDao);
