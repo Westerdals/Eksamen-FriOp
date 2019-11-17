@@ -12,7 +12,7 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>6.0.3</version>
-        </dependency>
+        </dependency>s
         <dependency>
             <groupId>org.logevents</groupId>
             <artifactId>logevents</artifactId>
