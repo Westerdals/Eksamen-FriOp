@@ -1,6 +1,7 @@
 # Eksamen Avansert Java FriOp
 
-*Dette er en mal som det anbefales at dere følger for `README.md`-filen til hovedinnleveringen i PGR203* 
+
+link til git: https://github.com/Westerdals/Eksamen-FriOp
 
 [![Build Status](https://travis-ci.com/Westerdals/Eksamen-FriOp.svg?token=oQD1cuGX1pop1pu9V5PF&branch=master)](https://travis-ci.com/Westerdals/Eksamen-FriOp/builds/136891645)
 
@@ -72,6 +73,9 @@
         tabellen, men det hadde vi ikke tid til.  
 
 ## Evaluering fra annen gruppe
+    
+    Link til git: https://github.com/Westerdals/pgr203-2019-eksamen-alicemacl
+    
     1. Godt inndelt i mapper/oversiktlig
     2. Bra at dere har fått til å legge til medlem på prosjekter
     3. Fungerer enkelt å sette opp med lokal database
