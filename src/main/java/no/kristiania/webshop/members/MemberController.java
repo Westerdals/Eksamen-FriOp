@@ -70,7 +70,7 @@ public class MemberController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = memberDao.listAll().stream()
-                .map(p -> String.format("<option value='%s'>%s %s</option>", p.getId(), p.getName(), p.getLName()))
+                .map(p -> String.format("<option id='%s'>%s %s</option>", p.getId(), p.getName(), p.getLName()))
                 .collect(Collectors.joining(""));
         return body;
     }
