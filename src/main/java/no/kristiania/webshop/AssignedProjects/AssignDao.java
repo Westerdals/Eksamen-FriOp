@@ -14,8 +14,9 @@ public class AssignDao extends AbstractDao<Assign> {
     }
 
 public void insert(Assign assign) throws SQLException {
-    long id = insert(assign, "insert into JOINTABELS (memberName, projectName) values (?, ?)");
-    assign.setId(id);
+
+    jonTables(assign, "insert into JOINTABELS (memberName, projectName) values (?, ?)");
+
 }
     @Override
     protected void mapToStatement(Assign assign, PreparedStatement statement) throws SQLException {
@@ -30,7 +31,6 @@ public void insert(Assign assign) throws SQLException {
    @Override
     public Assign mapFromResultSet(ResultSet rs) throws SQLException {
        Assign assign = new Assign();
-       assign.setId(rs.getLong("id"));
        assign.setMemberName(rs.getString("memberName"));
        assign.setProjectName(rs.getString("projectName"));
         return assign;

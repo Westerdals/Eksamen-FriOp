@@ -27,6 +27,14 @@ public abstract class AbstractDao<ENTITY> {
             }
         }
     }
+    public void jonTables(ENTITY o, String sql) throws SQLException {
+        try (Connection connection = dataSource.getConnection()){
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                mapToStatement(o, statement);
+                statement.executeUpdate();
+            }
+        }
+    }
 
     protected abstract void mapToStatement(ENTITY c, PreparedStatement statement)throws SQLException;
 

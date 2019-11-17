@@ -22,7 +22,8 @@
 </form>
 
 
-<form action=""><label>Assigned <select name="" id="join"></select></label></form>
+<form action="api/jointables"><label>Assigned <select name="" id="join"></select></label></form>
+
 <ul>
     <li> <a id="home" href="index.html">Home</a></li>
 
@@ -57,9 +58,6 @@
         .then(function (text) {
             jointables.innerHTML = text;
         });
-
-    var e = document.getElementById("ddlViewBy");
-    var strUser = e.options[e.selectedIndex].value
 
 </script>
 </html>
