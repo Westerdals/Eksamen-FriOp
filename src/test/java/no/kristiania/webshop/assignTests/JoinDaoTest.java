@@ -32,16 +32,16 @@ public class JoinDaoTest {
     }
 
     @Test
-    void shouldListSavedProducts() throws SQLException {
-        Assign assign = sampleProduct();
+    void shouldListSavedData() throws SQLException {
+        Assign assign = sampleData();
         dao.jonTables(assign, "insert into JOINTABELS (membername, projectname) values (?, ?)");
         assertThat(dao.listAll("Select * from JOINTABELS"))
                 .extracting(Assign::getMemberName)
                 .contains(assign.getMemberName());
     }
     @Test
-    void shouldRetrieveSavedProduct() throws SQLException {
-        Assign assign = sampleProduct();
+    void shouldRetrieveSavedData() throws SQLException {
+        Assign assign = sampleData();
         dao.insert(assign);
         assertThat(assign).hasNoNullFieldsOrProperties();
         assertThat(dao.retrieveJoin(assign.getProjectName(), "select * from JOINTABELS where projectName = ?"))
@@ -49,7 +49,7 @@ public class JoinDaoTest {
     }
 
 
-    static Assign sampleProduct() {
+    static Assign sampleData() {
         Assign assign = new Assign();
         assign.setMemberName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         assign.setProjectName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
@@ -61,4 +61,4 @@ public class JoinDaoTest {
     }
 
 
-}// end ProjectDaoTest
+}

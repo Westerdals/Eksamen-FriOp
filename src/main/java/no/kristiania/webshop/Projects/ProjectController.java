@@ -65,7 +65,7 @@ public class ProjectController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = projectDao.listAll().stream()
-                .map(p -> String.format("<option id='%s'>%s ->S %s</option>", p.getId(), p.getName(), p.getPStatus()))
+                .map(p -> String.format("<option id='%s'>%s -> %s</option>", p.getId(), p.getName(), p.getPStatus()))
                 .collect(Collectors.joining(""));
         return body;
     }

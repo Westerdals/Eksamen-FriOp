@@ -12,15 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemberControllerTest {
 
     @Test
-    void shouldReturnProductsFromDatabase() throws SQLException {
+    void shouldReturnMembersFromDatabase() throws SQLException {
         MemberDao dao = new MemberDao(MemberDaoTest.createDataSource());
 
-        Member member1 = MemberDaoTest.sampleProduct();
+        Member member1 = MemberDaoTest.sampleMember();
         dao.insert(member1);
 
         MemberController controller = new MemberController(dao);
         assertThat(controller.getBody())
                 .contains(String.format("<option id='%s'>%s %s</option>", member1.getId(), member1.getName(), member1.getLName()));
     }
-
 }

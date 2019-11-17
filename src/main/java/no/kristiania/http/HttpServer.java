@@ -79,9 +79,7 @@ public class HttpServer {
             String queryString = requestTarget.substring(questionPos + 1);
             return parseQueryString(queryString);
         }
-            //String queryString = requestTarget.substring(questionPos + 1);
-            //return parseQueryString(queryString);
-        //}
+
         return new HashMap<>();
     }
 

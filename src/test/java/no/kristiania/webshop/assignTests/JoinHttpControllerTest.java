@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JoinHttpControllerTest {
 
     @Test
-    void shouldReturnAllProducts() throws SQLException {
+    void shouldReturnAllData() throws SQLException {
         AssignDao assignDao = new AssignDao(JoinDaoTest.createDataSource());
-        Assign assign = JoinDaoTest.sampleProduct();
+        Assign assign = JoinDaoTest.sampleData();
         assignDao.insert(assign);
 
         AssignController controller = new AssignController(assignDao);

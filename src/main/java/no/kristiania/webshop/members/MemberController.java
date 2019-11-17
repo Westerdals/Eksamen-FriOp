@@ -62,8 +62,6 @@ public class MemberController implements HttpController {
                     "\r\n" +
                     message).getBytes());
         }
-
-
     }
 
     public String getBody() throws SQLException {

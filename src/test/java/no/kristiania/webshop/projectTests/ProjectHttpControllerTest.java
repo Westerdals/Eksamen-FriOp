@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProjectHttpControllerTest {
 
     @Test
-    void shouldReturnAllProducts() throws SQLException {
+    void shouldReturnAllProjects() throws SQLException {
         ProjectDao projectDao = new ProjectDao(ProjectDaoTest.createDataSource());
         Project project = ProjectDaoTest.sampleProject();
         projectDao.insert(project);

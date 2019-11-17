@@ -26,7 +26,6 @@ public class WebShopServer {
         dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
 
-        //Flyway.configure().dataSource(dataSource).load().clean();
         Flyway.configure().dataSource(dataSource).load().migrate();
 
         HttpServer server = new HttpServer(8080);
@@ -36,4 +35,4 @@ public class WebShopServer {
         server.addController("/api/jointables", new AssignController(new AssignDao(dataSource)));
         server.start();
     }
-}// end WebShopServer
+}

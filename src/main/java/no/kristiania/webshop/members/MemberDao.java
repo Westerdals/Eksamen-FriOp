@@ -36,5 +36,4 @@ public class MemberDao extends AbstractDao<Member> {
         member.setLName(rs.getString("lName"));
         return member;
     }
-
 }
