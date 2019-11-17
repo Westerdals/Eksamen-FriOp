@@ -121,22 +121,22 @@ body {
 
 * [ ] Dere har registrert link til GitHub repository i Wiseflow
 * [X] Koden er sjekket inn på github.com/Westerdals-repository
-* [ ] GitHub repository er private, men delt med gruppen dere gjør hverandrevurdering på
-* [ ] Dere har mottatt minst 2 positive og 2 korrektive GitHub issues i github repository fra en annen gruppe
+* [X] GitHub repository er private, men delt med gruppen dere gjør hverandrevurdering på
+* [X] Dere har mottatt minst 2 positive og 2 korrektive GitHub issues i github repository fra en annen gruppe
 * [X] Dere har committed kode med begge prosjektdeltagernes GitHub konto (alternativt: README beskriver arbeidsform)
 
 ### README.md
 
-* [ ] `README.md` inneholder en korrekt link til Travis CI
-* [ ] `README.md` beskriver prosjektets funksjonalitet, hvordan man bygger det og hvordan man kjører det 
-* [ ] `README.md` beskriver eventuell ekstra leveranse utover minimum
-* [ ] `README.md` inneholder link til en diagram som viser datamodellen
-* [ ] Dere har gitt minst 2 positive og 2 korrektive GitHub issues til en annen gruppe og inkluderer link til disse fra README.md
+* [X] `README.md` inneholder en korrekt link til Travis CI
+* [X] `README.md` beskriver prosjektets funksjonalitet, hvordan man bygger det og hvordan man kjører det 
+* [X] `README.md` beskriver eventuell ekstra leveranse utover minimum
+* [X] `README.md` inneholder link til en diagram som viser datamodellen
+* [X] Dere har gitt minst 2 positive og 2 korrektive GitHub issues til en annen gruppe og inkluderer link til disse fra README.md
 
 ### Koden
 
-* [ ] `mvn package` bygger en executable jar-fil
-* [ ] Koden inneholder et godt sett med tester
+* [X] `mvn package` bygger en executable jar-fil
+* [X] Koden inneholder et godt sett med tester
 * [X] `java -jar target/...jar` (etter `mvn package`) lar bruker legge til å liste ut data fra databasen
 * [X] Programmet leser `dataSource.url`, `dataSource.username` og `dataSource.password` fra `task-manager.properties` for å connecte til databasen
 * [X] Programmet bruker Flywaydb for å sette opp databaseskjema
@@ -153,11 +153,11 @@ body {
 ## Vedlegg: Mulighet for ekstrapoeng
 
 * [X] Avansert datamodell (mer enn 3 tabeller)
-* [ ] Avansert funksjonalitet (redigering av prosjektmedlemmer, statuskategorier, prosjekter)
+* [X] Avansert funksjonalitet (redigering av prosjektmedlemmer, statuskategorier, prosjekter)
 * [ ] Implementasjon av cookies for å konstruere sesjoner
-* [ ] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)
+* [X] UML diagram som dokumenterer datamodell og/eller arkitektur (presentert i README.md)
 * [ ] Rammeverk rundt Http-håndtering (en god HttpMessage class med HttpRequest og HttpResponse subtyper) som gjenspeiler RFC7230
-* [ ] Korrekt håndtering av norske tegn i HTTP
-* [ ] God bruk av DAO-pattern
+* [X] Korrekt håndtering av norske tegn i HTTP
+* [X] God bruk av DAO-pattern
 * [ ] Link til video med god demonstrasjon av ping-pong programmering
 * [ ] Annet
