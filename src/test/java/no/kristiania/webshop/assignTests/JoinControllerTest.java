@@ -9,13 +9,13 @@ import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AssignControllerTest {
+class JoinControllerTest {
 
     @Test
     void shouldReturnProductsFromDatabase() throws SQLException {
-        AssignDao dao = new AssignDao(AssignDaoTest.createDataSource());
+        AssignDao dao = new AssignDao(JoinDaoTest.createDataSource());
 
-        Assign assign1 = AssignDaoTest.sampleProduct();
+        Assign assign1 = JoinDaoTest.sampleProduct();
         dao.insert(assign1);
 
         AssignController controller = new AssignController(dao);

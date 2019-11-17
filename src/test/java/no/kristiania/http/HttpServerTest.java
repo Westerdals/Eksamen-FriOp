@@ -18,33 +18,9 @@ public class HttpServerTest {
         server.start();
     }
 
-
-    @Test
-    void shouldReturn404OnUnknownPath() throws IOException {
-        HttpClientResponse response = executeLocalRequest("/no/such/file");
-        assertThat(response.getStatusCode()).isEqualTo(404);
-    }
-
     private HttpClientResponse executeLocalRequest(String s) throws IOException{
         HttpClient client = new HttpClient("localhost", server.getPort(), s);
         return client.execute("GET");
-    }
-
-    @Test
-    void shouldParseMultipleParameters() throws IOException {
-        HttpClientResponse response = executeLocalRequest("/echo?content-type=text/html&body=foobar");
-        assertThat(response.getHeader("content-type")).isEqualTo("text/html");
-        assertThat(response.getBody()).isEqualTo("foobar");
-    }
-
-    @Test
-    void shouldParsePostParameters() throws IOException {
-        String formBody = "content-type=text/html&body=foobar";
-        HttpClient client = new HttpClient("localhost", server.getPort(), "/echo");
-        client.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        client.setBody(formBody);
-        HttpClientResponse response = client.execute("POST");
-        assertThat(response.getHeader("content-type")).isEqualTo("foobar");
     }
 
 
