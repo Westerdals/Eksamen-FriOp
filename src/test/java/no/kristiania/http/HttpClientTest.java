@@ -1,11 +1,8 @@
 package no.kristiania.http;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class HttpClientTest {
 
@@ -18,11 +15,12 @@ public class HttpClientTest {
     }
 /*
     @Test
-    void shouldReturn200Ok() throws IOException {
-        HttpClientResponse response = executeLocalRequest("/echo");
+    void shouldReturn200Ok() throws NullPointerException {
+        HttpClientResponse response = execute("/echo");
         assertThat(response.getStatusCode()).isEqualTo(200);
     }
 
+/*
     @Test
     void shouldReadReturnCode() throws IOException {
         HttpClientResponse response = makeEchoRequest("/echo?content-type=text/css");

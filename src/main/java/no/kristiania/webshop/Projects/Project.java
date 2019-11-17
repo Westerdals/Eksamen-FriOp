@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Project {
     private String name;
+    private String pStatus;
     private long id;
 
 
@@ -16,16 +17,25 @@ public class Project {
         return name;
     }
 
+    public String getPStatus() {
+        return pStatus;
+    }
+
+    public void setPStatus(String pStatus) {
+        this.pStatus = pStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
         return id == project.id &&
-                Objects.equals(name, project.name);
+                Objects.equals(name, project.name) &&
+                Objects.equals(pStatus, project.pStatus);
     }
 
-    public static String decodeValue(String value) {
+    public static String decodeValue(String value)  {
         try {
             return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException ex) {
@@ -50,6 +60,7 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "name='" + name + '\'' +
+                ", pStatus='" + pStatus + '\'' +
                 ", id=" + id +
                 '}';
     }
