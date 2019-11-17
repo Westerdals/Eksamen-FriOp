@@ -19,8 +19,6 @@ public class MemberController implements HttpController {
         this.memberDao = memberDao;
     }
 
-
-
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @Override

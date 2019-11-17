@@ -15,13 +15,14 @@ public class ProjectDao extends AbstractDao<Project> {
         super(dataSource);
     }
 
-public void insert(Project project) throws SQLException {
-    long id = insert(project, "insert into PROJECTS (name) values (?)");
-    project.setId(id);
-}
-    @Override
+    public void insert(Project project) throws SQLException {
+        long id = insert(project, "insert into PROJECTS (name, pStatus) values (?, ?)");
+         project.setId(id);
+    }
+        @Override
     protected void mapToStatement(Project project, PreparedStatement statement) throws SQLException {
-        statement.setString(1, project.getName());
+            statement.setString(1, project.getName());
+            statement.setString(2, project.getPStatus());
     }
 
     public List<Project> listAll() throws SQLException {
@@ -33,6 +34,7 @@ public void insert(Project project) throws SQLException {
        Project project = new Project();
        project.setId(rs.getLong("id"));
        project.setName(rs.getString("name"));
+       project.setPStatus(rs.getString("pStatus"));
         return project;
     }
 

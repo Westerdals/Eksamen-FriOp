@@ -28,15 +28,16 @@ public class ProjectController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Project project = new Project();
 
-
                 String tmpName = Project.decodeValue(query.get("name"));
+                String tmpPStatus = Project.decodeValue(query.get("pStatus"));
                 project.setName(tmpName);
+                project.setPStatus(tmpPStatus);
+
                 projectDao.insert(project);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/AddProject.html\r\n" +
                         "Connection: close\r\n" +
                         "\r\n").getBytes());
-
                 return;
             }
             String status = "200";
@@ -64,7 +65,7 @@ public class ProjectController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = projectDao.listAll().stream()
-                .map(p -> String.format("<option id='%s'>%s</option>", p.getId(), p.getName()))
+                .map(p -> String.format("<option id='%s'>%s ->S %s</option>", p.getId(), p.getName(), p.getPStatus()))
                 .collect(Collectors.joining(""));
         return body;
     }

@@ -1,4 +1,5 @@
 create table PROJECTS (
     id serial primary key,
-    name VARCHAR (100) not null
+    name VARCHAR (100) not null,
+    pStatus VARCHAR (100)
 )
