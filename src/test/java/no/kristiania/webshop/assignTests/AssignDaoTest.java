@@ -1,4 +1,4 @@
-package no.kristiania.webshop.memberTests;
+package no.kristiania.webshop.assignTests;
 
 import no.kristiania.webshop.members.Member;
 import no.kristiania.webshop.members.MemberDao;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MemberDaoTest {
+public class AssignDaoTest {
 
     private static Random random = new Random();
     private MemberDao dao;

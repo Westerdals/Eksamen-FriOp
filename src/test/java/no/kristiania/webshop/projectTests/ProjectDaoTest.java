@@ -1,7 +1,7 @@
-package no.kristiania.webshop.memberTests;
+package no.kristiania.webshop.projectTests;
 
-import no.kristiania.webshop.members.Member;
-import no.kristiania.webshop.members.MemberDao;
+import no.kristiania.webshop.Projects.Project;
+import no.kristiania.webshop.Projects.ProjectDao;
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,15 +12,15 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MemberDaoTest {
+public class ProjectDaoTest {
 
     private static Random random = new Random();
-    private MemberDao dao;
+    private ProjectDao dao;
 
     @BeforeEach
     void setUp() {
         JdbcDataSource dataSource = createDataSource();
-        dao = new MemberDao(dataSource);
+        dao = new ProjectDao(dataSource);
     }
 
     static JdbcDataSource createDataSource() {
@@ -32,26 +32,25 @@ public class MemberDaoTest {
 
     @Test
     void shouldListSavedProducts() throws SQLException {
-        Member member = sampleProduct();
-        dao.insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
-        assertThat(dao.listAll("Select * from MEMBERS"))
-                .extracting(Member::getName)
-                .contains(member.getName());
+        Project project = sampleProduct();
+        dao.insert(project, "insert into PROJECTS (name) values (?)");
+        assertThat(dao.listAll("Select * from PROJECTS"))
+                .extracting(Project::getName)
+                .contains(project.getName());
     }
     @Test
     void shouldRetrieveSavedProduct() throws SQLException {
-        Member member = sampleProduct();
-        dao.insert(member);
-        assertThat(member).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieve(member.getId(), "select * from MEMBERS where id = ?"))
-                .isEqualToComparingFieldByField(member);
+        Project project = sampleProduct();
+        dao.insert(project);
+        assertThat(project).hasNoNullFieldsOrProperties();
+        assertThat(dao.retrieve(project.getId(), "select * from PROJECTS where id = ?"))
+                .isEqualToComparingFieldByField(project);
     }
 
 
-    static Member sampleProduct() {
-        Member member = new Member();
+    static Project sampleProduct() {
+        Project member = new Project();
         member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        member.setLName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         return member;
     }
 
