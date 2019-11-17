@@ -2,7 +2,6 @@ package no.kristiania.webshop.Projects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
-import no.kristiania.webshop.members.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +29,7 @@ public class ProjectController implements HttpController {
                 Project project = new Project();
 
 
-                String tmpName = Member.decodeValue(query.get("name"));
+                String tmpName = Project.decodeValue(query.get("name"));
                 project.setName(tmpName);
                 projectDao.insert(project);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +

@@ -2,7 +2,6 @@ package no.kristiania.webshop.AssignedProjects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
-import no.kristiania.webshop.members.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,9 +28,8 @@ public class AssignController implements HttpController {
               query = HttpServer.parseQueryString(requestBody);
                 Assign assign = new Assign();
 
-
-                String tmpMemberName = Member.decodeValue(query.get("memberName"));
-                String tmpProjectName = Member.decodeValue(query.get("projectName"));
+                String tmpMemberName = Assign.decodeValue(query.get("memberName"));
+                String tmpProjectName = Assign.decodeValue(query.get("projectName"));
                 assign.setMemberName(tmpMemberName);
                 assign.setProjectName(tmpProjectName);
                 assignDao.insert(assign);
@@ -67,7 +65,7 @@ public class AssignController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = assignDao.listAll().stream()
-                .map(p -> String.format("<option value='%s'>MemberID: %s ProjectID: %s</option>", p.getId(), p.getMemberName(), p.getProjectName()))
+                .map(p -> String.format("<option value='MemberID: %s ProjectID: %s'></option>", p.getMemberName(), p.getProjectName()))
                 .collect(Collectors.joining(""));
         return body;
     }

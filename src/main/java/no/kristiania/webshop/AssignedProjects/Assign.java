@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Assign {
     private String memberName;
     private String projectName;
-    private long id;
 
 
     public void setMemberName(String memberName){
@@ -26,22 +25,13 @@ public class Assign {
         this.projectName = pName;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Assign assign = (Assign) o;
-        return id == assign.id &&
-                memberName.equals(assign.memberName) &&
-                projectName.equals(assign.projectName);
+        return Objects.equals(memberName, assign.memberName) &&
+                Objects.equals(projectName, assign.projectName);
     }
 
     public static String decodeValue(String value) {
@@ -60,9 +50,8 @@ public class Assign {
     @Override
     public String toString() {
         return "Assign{" +
-                "name='" + memberName + '\'' +
-                "pName='" + projectName + '\'' +
-                ", id=" + id +
+                "memberName='" + memberName + '\'' +
+                ", projectName='" + projectName + '\'' +
                 '}';
     }
 }
