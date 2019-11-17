@@ -23,10 +23,19 @@
 
 ## Designbeskrivelse
 
-Her kan dere inkludere et diagram av datamodellen og av de viktigste klassene i programmet.
+![](docs/FriOp.uml)
 
-Beskrivelse av hvordan en habil ny utvikler som ser prosjektet for første gang bør forholde seg til koden deres.
+     For se på bilde må du gå in på docs og klikke på uml bidet.
 
+     Veldig kort forklart er det er "kart" over alle klassene vi har i programmet.
+       
+         På bildet kan du se streker i forskjellige farger og mønsteret som beskriver
+         koblinen mellom klassene.
+         kort fortalt:
+             Blå pil/strek betyr at den klassen "extends an abstract class"
+             Grønn pil/strek betyr at klassen "implements an Interface"
+             Hvit pil/strek betyr at det er en en "connection" mellom dem.  
+    
 ## Egenevaluering
 
     * Vi jobbet mye på én datamaskin i starten, ettersom at vi hadde problemer med den ene
@@ -36,7 +45,7 @@ Beskrivelse av hvordan en habil ny utvikler som ser prosjektet for første gang 
     
 
 ### Hva vi lærte underveis
-    * vi har lært mye om å sette opp server og db, samt at det ikke er alltid like lett
+    * Vi har lært mye om å sette opp server og db, samt at det ikke er alltid like lett
       å gjøre ting som man ser for seg. men det vi kanskje har lært aller mest under 
       denne eksamen er par programmering. Vi har lært hverandre shortcuts og hvordan
       ting fungerer i programmet. det har vært lettere og komme fram til en løsning når 
@@ -59,5 +68,18 @@ Beskrivelse av hvordan en habil ny utvikler som ser prosjektet for første gang 
         tabellen, men det hadde vi ikke tid til.  
 
 ## Evaluering fra annen gruppe
+    1. Godt inndelt i mapper/oversiktlig
+    2. Bra at dere har fått til å legge til medlem på prosjekter
+    3. Fungerer enkelt å sette opp med lokal database
+    4. Kan ikke se at jar fungerer
+    5. Er en del kode som er kommentert ut, kan ryddes opp i?
+    6. Måtte kommentere ut tester før mvn kjører
 
 ## Evaluering gitt til annen gruppe
+    1. Tester
+        - Du har skrevet en del tester som dekker mye av koden 👍 🥇
+    2. Greie navn på metoder og klasser
+    3. Fjerne unødvendig kode
+    4. organiser "Classes"
+        - Du kunne gruppere "Classes" dine, det kan bli litt
+          uoversiktlig hvis prosjektet blir litt større
