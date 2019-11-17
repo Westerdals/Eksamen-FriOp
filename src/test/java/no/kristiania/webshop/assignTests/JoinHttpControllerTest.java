@@ -12,6 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JoinHttpControllerTest {
 
     @Test
+    void shouldReturnAllData() throws SQLException {
+        AssignDao assignDao = new AssignDao(JoinDaoTest.createDataSource());
+        Assign assign = JoinDaoTest.sampleData();
+        assignDao.insert(assign);
     void shouldReturnAllProducts() throws SQLException {
         JoinDao joinDao = new JoinDao(JoinDaoTest.createDataSource());
         Join join = JoinDaoTest.sampleProduct();

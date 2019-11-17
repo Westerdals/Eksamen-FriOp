@@ -32,16 +32,5 @@ public class HttpServerTest {
 
         HttpClientResponse response = executeLocalRequest("/somefile.txt");
         assertThat(response.getBody()).isEqualTo(fileContent);
-}
-
-
-
-
-
-
-
-
-
-
-
+    }
 }

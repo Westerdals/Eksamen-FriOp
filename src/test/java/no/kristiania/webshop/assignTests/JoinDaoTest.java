@@ -32,28 +32,28 @@ public class JoinDaoTest {
     }
 
     @Test
-    void shouldListSavedProducts() throws SQLException {
-        Join join = sampleProduct();
-        dao.jonTables(join, "insert into JOINTABELS (membername, projectname) values (?, ?)");
+    void shouldListSavedData() throws SQLException {
+        Assign assign = sampleData();
+        dao.jonTables(assign, "insert into JOINTABELS (membername, projectname) values (?, ?)");
         assertThat(dao.listAll("Select * from JOINTABELS"))
                 .extracting(Join::getMemberName)
                 .contains(join.getMemberName());
     }
     @Test
-    void shouldRetrieveSavedProduct() throws SQLException {
-        Join join = sampleProduct();
-        dao.insert(join);
-        assertThat(join).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieveJoin(join.getProjectName(), "select * from JOINTABELS where projectName = ?"))
-                .isEqualToComparingFieldByField(join);
+    void shouldRetrieveSavedData() throws SQLException {
+        Assign assign = sampleData();
+        dao.insert(assign);
+        assertThat(assign).hasNoNullFieldsOrProperties();
+        assertThat(dao.retrieveJoin(assign.getProjectName(), "select * from JOINTABELS where projectName = ?"))
+                .isEqualToComparingFieldByField(assign);
     }
 
 
-    static Join sampleProduct() {
-        Join join = new Join();
-        join.setMemberName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        join.setProjectName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        return join;
+    static Assign sampleData() {
+        Assign assign = new Assign();
+        assign.setMemberName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        assign.setProjectName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        return assign;
     }
 
     private static String PickOne(String[] alternatives) {
@@ -61,4 +61,4 @@ public class JoinDaoTest {
     }
 
 
-}// end ProjectDaoTest
+}

@@ -37,5 +37,4 @@ public class ProjectDao extends AbstractDao<Project> {
        project.setPStatus(rs.getString("pStatus"));
         return project;
     }
-
 }

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProjectControllerTest {
 
     @Test
-    void shouldReturnProductsFromDatabase() throws SQLException {
+    void shouldReturnProjectsFromDatabase() throws SQLException {
         ProjectDao dao = new ProjectDao(ProjectDaoTest.createDataSource());
 
         Project project1 = ProjectDaoTest.sampleProject();
@@ -22,5 +22,4 @@ class ProjectControllerTest {
         assertThat(controller.getBody())
                 .contains(String.format("<option id='%s'>%s ->S %s</option>", project1.getId(), project1.getName(), project1.getPStatus()));
     }
-
 }

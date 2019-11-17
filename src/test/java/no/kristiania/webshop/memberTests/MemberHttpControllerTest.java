@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MemberHttpControllerTest {
 
     @Test
-    void shouldReturnAllProducts() throws SQLException {
+    void shouldReturnAllMembers() throws SQLException {
         MemberDao memberDao = new MemberDao(MemberDaoTest.createDataSource());
-        Member member = MemberDaoTest.sampleProduct();
+        Member member = MemberDaoTest.sampleMember();
         memberDao.insert(member);
 
         MemberController controller = new MemberController(memberDao);

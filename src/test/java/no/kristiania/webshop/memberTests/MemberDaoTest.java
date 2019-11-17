@@ -31,16 +31,16 @@ public class MemberDaoTest {
     }
 
     @Test
-    void shouldListSavedProducts() throws SQLException {
-        Member member = sampleProduct();
+    void shouldListSavedMembers() throws SQLException {
+        Member member = sampleMember();
         dao.insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
         assertThat(dao.listAll("Select * from MEMBERS"))
                 .extracting(Member::getName)
                 .contains(member.getName());
     }
     @Test
-    void shouldRetrieveSavedProduct() throws SQLException {
-        Member member = sampleProduct();
+    void shouldRetrieveSavedMembers() throws SQLException {
+        Member member = sampleMember();
         dao.insert(member);
         assertThat(member).hasNoNullFieldsOrProperties();
         assertThat(dao.retrieve(member.getId(), "select * from MEMBERS where id = ?"))
@@ -48,7 +48,7 @@ public class MemberDaoTest {
     }
 
 
-    static Member sampleProduct() {
+    static Member sampleMember() {
         Member member = new Member();
         member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         member.setLName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
@@ -60,4 +60,4 @@ public class MemberDaoTest {
     }
 
 
-}// end ProjectDaoTest
+}

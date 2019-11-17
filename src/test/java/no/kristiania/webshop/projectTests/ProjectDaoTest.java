@@ -31,7 +31,7 @@ public class ProjectDaoTest {
     }
 
     @Test
-    void shouldListSavedProducts() throws SQLException {
+    void shouldListSavedProjects() throws SQLException {
         Project project = sampleProject();
         dao.insert(project, "insert into PROJECTS (name, pStatus) values (?, ?)");
         assertThat(dao.listAll("Select * from PROJECTS"))
@@ -39,7 +39,7 @@ public class ProjectDaoTest {
                 .contains(project.getName());
     }
     @Test
-    void shouldRetrieveSavedProduct() throws SQLException {
+    void shouldRetrieveSavedProject() throws SQLException {
         Project project = sampleProject();
         dao.insert(project);
         assertThat(project).hasNoNullFieldsOrProperties();
@@ -58,6 +58,4 @@ public class ProjectDaoTest {
     private static String PickOne(String[] alternatives) {
         return alternatives[random.nextInt(alternatives.length)];
     }
-
-
-}// end ProjectDaoTest
+}
