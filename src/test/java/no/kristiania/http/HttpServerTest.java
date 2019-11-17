@@ -17,7 +17,7 @@ public class HttpServerTest {
         server = new HttpServer(0);
         server.start();
     }
-
+/*
 
     @Test
     void shouldReturn404OnUnknownPath(){
@@ -35,6 +35,17 @@ public class HttpServerTest {
         assertThat(response.getHeader("content-type")).isEqualTo("text/html");
         assertThat(response.getBody()).isEqualTo("foobar");
     }
+
+    @Test
+    void shouldParsePostParameters() throws IOException {
+        String formBody = "content-type=text/html&body=foobar";
+        HttpClient client = new HttpClient("localhost", server.getPort(), "/echo");
+        client.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        client.setBody(formBody);
+        HttpClientResponse response = client.execute("POST");
+        assertThat(response.getHeader("content-type")).isEqualTo("foobar");
+    }
+
     @Test
     void shouldReadFile() throws IOException {
         server.setAssertRoot("target/");
@@ -45,6 +56,9 @@ public class HttpServerTest {
         assertThat(response.getBody()).isEqualTo(fileContent);
 }
 
+
+
+ */
 
 
 

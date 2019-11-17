@@ -1,5 +1,8 @@
 package no.kristiania.webshop.assignTests;
 
+import no.kristiania.webshop.AssignedProjects.Assign;
+import no.kristiania.webshop.AssignedProjects.AssignController;
+import no.kristiania.webshop.AssignedProjects.AssignDao;
 import no.kristiania.webshop.members.Member;
 import no.kristiania.webshop.members.MemberController;
 import no.kristiania.webshop.members.MemberDao;
@@ -13,13 +16,13 @@ public class AssignHttpControllerTest {
 
     @Test
     void shouldReturnAllProducts() throws SQLException {
-        MemberDao memberDao = new MemberDao(AssignDaoTest.createDataSource());
-        Member member = AssignDaoTest.sampleProduct();
-        memberDao.insert(member);
+        AssignDao assignDao = new AssignDao(AssignDaoTest.createDataSource());
+        Assign assign = AssignDaoTest.sampleProduct();
+        assignDao.insert(assign);
 
-        MemberController controller = new MemberController(memberDao);
+        AssignController controller = new AssignController(assignDao);
         assertThat(controller.getBody())
-                .contains("<option value='" + member.getId() + "'>" + member.getName() + " " + member.getLName() + "</option>");
+                .contains("<option id='" + assign.getMemberName()  + " " + assign.getProjectName() + "'>Project: " + assign.getProjectName() + " -> " + assign.getMemberName() + "</option>");
     }
 }
 

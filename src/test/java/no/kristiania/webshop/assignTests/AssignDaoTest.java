@@ -1,7 +1,8 @@
 package no.kristiania.webshop.assignTests;
 
-import no.kristiania.webshop.members.Member;
-import no.kristiania.webshop.members.MemberDao;
+
+import no.kristiania.webshop.AssignedProjects.Assign;
+import no.kristiania.webshop.AssignedProjects.AssignDao;
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,12 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AssignDaoTest {
 
     private static Random random = new Random();
-    private MemberDao dao;
+    private AssignDao dao;
 
     @BeforeEach
     void setUp() {
         JdbcDataSource dataSource = createDataSource();
-        dao = new MemberDao(dataSource);
+        dao = new AssignDao(dataSource);
     }
 
     static JdbcDataSource createDataSource() {
@@ -32,27 +33,27 @@ public class AssignDaoTest {
 
     @Test
     void shouldListSavedProducts() throws SQLException {
-        Member member = sampleProduct();
-        dao.insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
-        assertThat(dao.listAll("Select * from MEMBERS"))
-                .extracting(Member::getName)
-                .contains(member.getName());
+        Assign assign = sampleProduct();
+        dao.jonTables(assign, "insert into JOINTABELS (membername, projectname) values (?, ?)");
+        assertThat(dao.listAll("Select * from JOINTABELS"))
+                .extracting(Assign::getMemberName)
+                .contains(assign.getMemberName());
     }
     @Test
     void shouldRetrieveSavedProduct() throws SQLException {
-        Member member = sampleProduct();
-        dao.insert(member);
-        assertThat(member).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieve(member.getId(), "select * from MEMBERS where id = ?"))
-                .isEqualToComparingFieldByField(member);
+        Assign assign = sampleProduct();
+        dao.insert(assign);
+        assertThat(assign).hasNoNullFieldsOrProperties();
+        assertThat(dao.retrieveJoin(assign.getMemberName(), "select * from JOINTABELS where memberName = ?"))
+                .isEqualToComparingFieldByField(assign);
     }
 
 
-    static Member sampleProduct() {
-        Member member = new Member();
-        member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        member.setLName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
-        return member;
+    static Assign sampleProduct() {
+        Assign assign = new Assign();
+        assign.setMemberName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        assign.setProjectName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        return assign;
     }
 
     private static String PickOne(String[] alternatives) {

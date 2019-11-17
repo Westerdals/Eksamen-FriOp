@@ -1,8 +1,8 @@
 package no.kristiania.webshop.assignTests;
 
-import no.kristiania.webshop.members.Member;
-import no.kristiania.webshop.members.MemberController;
-import no.kristiania.webshop.members.MemberDao;
+import no.kristiania.webshop.AssignedProjects.Assign;
+import no.kristiania.webshop.AssignedProjects.AssignController;
+import no.kristiania.webshop.AssignedProjects.AssignDao;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -13,14 +13,14 @@ class AssignControllerTest {
 
     @Test
     void shouldReturnProductsFromDatabase() throws SQLException {
-        MemberDao dao = new MemberDao(AssignDaoTest.createDataSource());
+        AssignDao dao = new AssignDao(AssignDaoTest.createDataSource());
 
-        Member member1 = AssignDaoTest.sampleProduct();
-        dao.insert(member1);
+        Assign assign1 = AssignDaoTest.sampleProduct();
+        dao.insert(assign1);
 
-        MemberController controller = new MemberController(dao);
+        AssignController controller = new AssignController(dao);
         assertThat(controller.getBody())
-                .contains(String.format("<option value='%s'>%s %s</option>", member1.getId(), member1.getName(), member1.getLName()));
+                .contains(String.format("<option id='%s %s'>Project: %s -> %s</option>", assign1.getMemberName(), assign1.getProjectName(), assign1.getProjectName(), assign1.getMemberName()));
     }
 
 }
