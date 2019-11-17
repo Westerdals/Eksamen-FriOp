@@ -1,4 +1,4 @@
-package no.kristiania.webshop.assignTests;
+package no.kristiania.webshop.JoinTests;
 
 import no.kristiania.webshop.JoinProjects.Join;
 import no.kristiania.webshop.JoinProjects.JoinController;

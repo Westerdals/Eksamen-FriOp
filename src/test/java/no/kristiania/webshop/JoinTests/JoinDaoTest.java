@@ -1,4 +1,4 @@
-package no.kristiania.webshop.assignTests;
+package no.kristiania.webshop.JoinTests;
 
 
 import no.kristiania.webshop.JoinProjects.Join;
@@ -33,15 +33,15 @@ public class JoinDaoTest {
 
     @Test
     void shouldListSavedData() throws SQLException {
-        Assign assign = sampleData();
-        dao.jonTables(assign, "insert into JOINTABELS (membername, projectname) values (?, ?)");
+        Join join = sampleData();
+        dao.jonTables(join, "insert into JOINTABELS (membername, projectname) values (?, ?)");
         assertThat(dao.listAll("Select * from JOINTABELS"))
                 .extracting(Join::getMemberName)
                 .contains(join.getMemberName());
     }
     @Test
     void shouldRetrieveSavedData() throws SQLException {
-        Assign assign = sampleData();
+        Join assign = sampleData();
         dao.insert(assign);
         assertThat(assign).hasNoNullFieldsOrProperties();
         assertThat(dao.retrieveJoin(assign.getProjectName(), "select * from JOINTABELS where projectName = ?"))
@@ -49,8 +49,8 @@ public class JoinDaoTest {
     }
 
 
-    static Assign sampleData() {
-        Assign assign = new Assign();
+    static Join sampleData() {
+        Join assign = new Join();
         assign.setMemberName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         assign.setProjectName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         return assign;
