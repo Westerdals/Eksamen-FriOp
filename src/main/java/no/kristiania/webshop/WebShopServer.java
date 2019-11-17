@@ -26,10 +26,11 @@ public class WebShopServer {
         dataSource.setUser(properties.getProperty("dataSource.username"));
         dataSource.setPassword(properties.getProperty("dataSource.password"));
 
+        //Flyway.configure().dataSource(dataSource).load().clean();
         Flyway.configure().dataSource(dataSource).load().migrate();
 
         HttpServer server = new HttpServer(8080);
-        server.setAssertRoot("src/main/resources/webshop");
+        server.setAssertRoot("src/main/resources/webshop/");
         server.addController("/api/members", new MemberController(new MemberDao(dataSource)));
         server.addController("/api/projects", new ProjectController(new ProjectDao(dataSource)));
         server.addController("/api/jointables", new AssignController(new AssignDao(dataSource)));

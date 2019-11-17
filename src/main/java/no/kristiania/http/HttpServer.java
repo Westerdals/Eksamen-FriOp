@@ -17,29 +17,28 @@ public class HttpServer {
     private ServerSocket serverSocket;
     private String assertRoot;
 
-    private HttpController defaultController = new FileHttpController(this);
+    private no.kristiania.http.HttpController defaultController;
 
     private Map<String, HttpController> controllers = new HashMap<>();
 
     public HttpServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
+        defaultController = new FileHttpController(this);
         controllers.put("/echo", new EchoHttpController());
     }
 
-    public static void main(String[] args) throws IOException {
-        new HttpServer(8080).start();
-    }
-
     public void start() {
-        new Thread(() -> run()).start();
+        new Thread(this::run).start();
+
     }
 
     private static Logger logger = LoggerFactory.getLogger(HttpServer.class);
 
     private void run() {
         while (true) {
-            try(Socket socket = serverSocket.accept()) {
+            try {
 
+                Socket socket = serverSocket.accept();
                 String requestLine = HttpMessage.readLine(socket.getInputStream());
                 if(requestLine.isBlank()) continue;
 
@@ -56,6 +55,10 @@ public class HttpServer {
                         .getOrDefault(requestPath, defaultController)
                         .handle(requestAction, requestPath, query, body, socket.getOutputStream());
                 logger.info("handling request {} {}", requestAction, requestPath);
+
+                if(requestPath.equals("/stop")){
+                    System.exit(0);
+                }
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
