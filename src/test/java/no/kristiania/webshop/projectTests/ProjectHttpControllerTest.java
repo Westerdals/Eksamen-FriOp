@@ -14,7 +14,7 @@ public class ProjectHttpControllerTest {
     @Test
     void shouldReturnAllProducts() throws SQLException {
         ProjectDao projectDao = new ProjectDao(ProjectDaoTest.createDataSource());
-        Project project = ProjectDaoTest.sampleProduct();
+        Project project = ProjectDaoTest.sampleProject();
         projectDao.insert(project);
 
         ProjectController controller = new ProjectController(projectDao);

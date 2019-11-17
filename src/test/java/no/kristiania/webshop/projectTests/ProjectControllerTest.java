@@ -15,12 +15,12 @@ class ProjectControllerTest {
     void shouldReturnProductsFromDatabase() throws SQLException {
         ProjectDao dao = new ProjectDao(ProjectDaoTest.createDataSource());
 
-        Project project1 = ProjectDaoTest.sampleProduct();
+        Project project1 = ProjectDaoTest.sampleProject();
         dao.insert(project1);
 
         ProjectController controller = new ProjectController(dao);
         assertThat(controller.getBody())
-                .contains(String.format("<option value='%s'>%s</option>", project1.getId(), project1.getName()));
+                .contains(String.format("<option id='%s'>%s ->S %s</option>", project1.getId(), project1.getName(), project1.getPStatus()));
     }
 
 }

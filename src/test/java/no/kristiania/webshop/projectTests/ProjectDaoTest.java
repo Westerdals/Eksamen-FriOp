@@ -23,7 +23,7 @@ public class ProjectDaoTest {
         dao = new ProjectDao(dataSource);
     }
 
-    static JdbcDataSource createDataSource() {
+    public static JdbcDataSource createDataSource() {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setUrl("jdbc:h2:mem:productTest;DB_CLOSE_DELAY=-1");
         Flyway.configure().dataSource(dataSource).load().migrate();
@@ -32,7 +32,7 @@ public class ProjectDaoTest {
 
     @Test
     void shouldListSavedProducts() throws SQLException {
-        Project project = sampleProduct();
+        Project project = sampleProject();
         dao.insert(project, "insert into PROJECTS (name) values (?)");
         assertThat(dao.listAll("Select * from PROJECTS"))
                 .extracting(Project::getName)
@@ -40,7 +40,7 @@ public class ProjectDaoTest {
     }
     @Test
     void shouldRetrieveSavedProduct() throws SQLException {
-        Project project = sampleProduct();
+        Project project = sampleProject();
         dao.insert(project);
         assertThat(project).hasNoNullFieldsOrProperties();
         assertThat(dao.retrieve(project.getId(), "select * from PROJECTS where id = ?"))
@@ -48,9 +48,10 @@ public class ProjectDaoTest {
     }
 
 
-    static Project sampleProduct() {
+    public static Project sampleProject() {
         Project member = new Project();
         member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        member.setPStatus(PickOne(new String [] {"Done", "Finish", "On Going", "On Hold", "excitement", "Invalid"}));
         return member;
     }
 
