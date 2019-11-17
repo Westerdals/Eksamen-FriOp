@@ -43,6 +43,10 @@
     opp og gå, og lærte oss mer av git, gikk kodingen ekstremt mye fortere. Det var dog fortsatt
     best å sitte på hver vår maskin, men ved siden av hverandre for å hjelpe til med det vi kunne. 
     
+    Vi har også hatt store problemer med Travis den siste dagen, det er har tatt flere timer før den
+    har gitt oss noe build "svar", det vi har funnet på nett angående grunner er at det kan være stor
+    pågang på travis sine servere slik at de ner nødt til å legge projektene i kø. og ventetiden kan 
+    være fra noen få minutter til å være 5 timer og oppover.  
 
 ### Hva vi lærte underveis
     * Vi har lært mye om å sette opp server og db, samt at det ikke er alltid like lett
