@@ -65,7 +65,7 @@ public class AssignController implements HttpController {
 
     public String getBody() throws SQLException {
         String body = assignDao.listAll().stream()
-                .map(p -> String.format("<option value='MemberID: %s ProjectID: %s'></option>", p.getMemberName(), p.getProjectName()))
+                .map(p -> String.format("<option id='%s %s'> MemberID: %s -> ProjectID: %s</option>", p.getMemberName(), p.getProjectName(), p.getMemberName(), p.getProjectName()))
                 .collect(Collectors.joining(""));
         return body;
     }
