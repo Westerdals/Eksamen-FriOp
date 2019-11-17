@@ -20,7 +20,7 @@ class MemberControllerTest {
 
         MemberController controller = new MemberController(dao);
         assertThat(controller.getBody())
-                .contains(String.format("<option value='%s'>%s %s</option>", member1.getId(), member1.getName(), member1.getLName()));
+                .contains(String.format("<option id='%s'>%s %s</option>", member1.getId(), member1.getName(), member1.getLName()));
     }
 
 }

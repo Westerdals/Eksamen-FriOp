@@ -33,7 +33,7 @@ public class ProjectDaoTest {
     @Test
     void shouldListSavedProducts() throws SQLException {
         Project project = sampleProject();
-        dao.insert(project, "insert into PROJECTS (name) values (?)");
+        dao.insert(project, "insert into PROJECTS (name, pStatus) values (?, ?)");
         assertThat(dao.listAll("Select * from PROJECTS"))
                 .extracting(Project::getName)
                 .contains(project.getName());

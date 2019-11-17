@@ -44,7 +44,7 @@ public class AssignDaoTest {
         Assign assign = sampleProduct();
         dao.insert(assign);
         assertThat(assign).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieveJoin(assign.getMemberName(), "select * from JOINTABELS where memberName = ?"))
+        assertThat(dao.retrieveJoin(assign.getProjectName(), "select * from JOINTABELS where projectName = ?"))
                 .isEqualToComparingFieldByField(assign);
     }
 

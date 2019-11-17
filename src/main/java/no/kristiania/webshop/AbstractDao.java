@@ -70,10 +70,10 @@ public abstract class AbstractDao<ENTITY> {
             }
         }
     }
-    public ENTITY retrieveJoin(String memberName, String sql) throws SQLException {
+    public ENTITY retrieveJoin(String projectName, String sql) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, memberName);
+                statement.setString(1, projectName);
                 try (ResultSet rs = statement.executeQuery()) {
                     if(rs.next()){
                         return mapFromResultSet(rs);

@@ -19,7 +19,7 @@ public class MemberHttpControllerTest {
 
         MemberController controller = new MemberController(memberDao);
         assertThat(controller.getBody())
-                .contains("<option value='" + member.getId() + "'>" + member.getName() + " " + member.getLName() + "</option>");
+                .contains("<option id='" + member.getId() + "'>" + member.getName() + " " + member.getLName() + "</option>");
     }
 }
 
