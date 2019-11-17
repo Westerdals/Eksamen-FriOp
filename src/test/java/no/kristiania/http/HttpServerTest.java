@@ -17,20 +17,21 @@ public class HttpServerTest {
         server = new HttpServer(0);
         server.start();
     }
-/*
+
 
     @Test
-    void shouldReturn404OnUnknownPath(){
+    void shouldReturn404OnUnknownPath() throws IOException {
         HttpClientResponse response = executeLocalRequest("/no/such/file");
         assertThat(response.getStatusCode()).isEqualTo(404);
     }
 
-    private HttpClientResponse executeLocalRequest(String s) {
-        return null;
+    private HttpClientResponse executeLocalRequest(String s) throws IOException{
+        HttpClient client = new HttpClient("localhost", server.getPort(), s);
+        return client.execute("GET");
     }
 
     @Test
-    void shouldParseMultipleParameters(){
+    void shouldParseMultipleParameters() throws IOException {
         HttpClientResponse response = executeLocalRequest("/echo?content-type=text/html&body=foobar");
         assertThat(response.getHeader("content-type")).isEqualTo("text/html");
         assertThat(response.getBody()).isEqualTo("foobar");
@@ -46,6 +47,7 @@ public class HttpServerTest {
         assertThat(response.getHeader("content-type")).isEqualTo("foobar");
     }
 
+
     @Test
     void shouldReadFile() throws IOException {
         server.setAssertRoot("target/");
@@ -58,7 +60,7 @@ public class HttpServerTest {
 
 
 
- */
+
 
 
 
