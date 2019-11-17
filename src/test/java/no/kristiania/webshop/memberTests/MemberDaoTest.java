@@ -1,4 +1,4 @@
-package no.kristiania.webshop;
+package no.kristiania.webshop.memberTests;
 
 import no.kristiania.webshop.members.Member;
 import no.kristiania.webshop.members.MemberDao;
@@ -33,8 +33,8 @@ public class MemberDaoTest {
     @Test
     void shouldListSavedProducts() throws SQLException {
         Member member = sampleProduct();
-        dao.insert(member, "insert into PRODUCTS (name) values (?)");
-        assertThat(dao.listAll("Select * from PRODUCTS"))
+        dao.insert(member, "insert into MEMBERS (name, lName) values (?, ?)");
+        assertThat(dao.listAll("Select * from MEMBERS"))
                 .extracting(Member::getName)
                 .contains(member.getName());
     }
@@ -43,7 +43,7 @@ public class MemberDaoTest {
         Member member = sampleProduct();
         dao.insert(member);
         assertThat(member).hasNoNullFieldsOrProperties();
-        assertThat(dao.retrieve(member.getId(), "select * from PRODUCTS where id = ?"))
+        assertThat(dao.retrieve(member.getId(), "select * from MEMBERS where id = ?"))
                 .isEqualToComparingFieldByField(member);
     }
 
@@ -51,6 +51,7 @@ public class MemberDaoTest {
     static Member sampleProduct() {
         Member member = new Member();
         member.setName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
+        member.setLName(PickOne(new String [] {"apple", "banana", "coconut", "dried apples", "excitement", "Sadness"}));
         return member;
     }
 
