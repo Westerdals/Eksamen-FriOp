@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class JoinControllerTest {
 
+    /*
     @Test
     void shouldReturnProductsFromDatabase() throws SQLException {
         AssignDao dao = new AssignDao(JoinDaoTest.createDataSource());
@@ -23,4 +24,6 @@ class JoinControllerTest {
                 .contains(String.format("<option id='%s %s'>Project: %s -> %s</option>", assign1.getMemberName(), assign1.getProjectName(), assign1.getProjectName(), assign1.getMemberName()));
     }
 
+
+     */
 }
