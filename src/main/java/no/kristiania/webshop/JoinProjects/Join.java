@@ -1,11 +1,11 @@
-package no.kristiania.webshop.AssignedProjects;
+package no.kristiania.webshop.JoinProjects;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
-public class Assign {
+public class Join {
     private String memberName;
     private String projectName;
 
@@ -29,9 +29,9 @@ public class Assign {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Assign assign = (Assign) o;
-        return Objects.equals(memberName, assign.memberName) &&
-                Objects.equals(projectName, assign.projectName);
+        Join join = (Join) o;
+        return Objects.equals(memberName, join.memberName) &&
+                Objects.equals(projectName, join.projectName);
     }
 
     public static String decodeValue(String value) {

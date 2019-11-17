@@ -1,8 +1,8 @@
 package no.kristiania.webshop.assignTests;
 
-import no.kristiania.webshop.AssignedProjects.Assign;
-import no.kristiania.webshop.AssignedProjects.AssignController;
-import no.kristiania.webshop.AssignedProjects.AssignDao;
+import no.kristiania.webshop.JoinProjects.Join;
+import no.kristiania.webshop.JoinProjects.JoinController;
+import no.kristiania.webshop.JoinProjects.JoinDao;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -13,13 +13,13 @@ public class JoinHttpControllerTest {
 
     @Test
     void shouldReturnAllProducts() throws SQLException {
-        AssignDao assignDao = new AssignDao(JoinDaoTest.createDataSource());
-        Assign assign = JoinDaoTest.sampleProduct();
-        assignDao.insert(assign);
+        JoinDao joinDao = new JoinDao(JoinDaoTest.createDataSource());
+        Join join = JoinDaoTest.sampleProduct();
+        joinDao.insert(join);
 
-        AssignController controller = new AssignController(assignDao);
+        JoinController controller = new JoinController(joinDao);
         assertThat(controller.getBody())
-                .contains("<option id='" + assign.getMemberName()  + " " + assign.getProjectName() + "'>Project: " + assign.getProjectName() + " -> " + assign.getMemberName() + "</option>");
+                .contains("<option id='" + join.getMemberName()  + " " + join.getProjectName() + "'>Project: " + join.getProjectName() + " -> " + join.getMemberName() + "</option>");
     }
 }
 

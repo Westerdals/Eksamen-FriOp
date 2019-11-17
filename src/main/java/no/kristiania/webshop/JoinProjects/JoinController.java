@@ -1,4 +1,4 @@
-package no.kristiania.webshop.AssignedProjects;
+package no.kristiania.webshop.JoinProjects;
 
 import no.kristiania.http.HttpController;
 import no.kristiania.http.HttpServer;
@@ -11,28 +11,28 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AssignController implements HttpController {
+public class JoinController implements HttpController {
 
-    private final AssignDao assignDao;
+    private final JoinDao joinDao;
 
-    public AssignController(AssignDao assignDao) {
-        this.assignDao = assignDao;
+    public JoinController(JoinDao joinDao) {
+        this.joinDao = joinDao;
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(AssignController.class);
+    private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
 
     @Override
     public void handle(String requestAction, String requestPath, Map<String, String> query, String requestBody, OutputStream outputStream) throws IOException, SQLException {
         try {
             if (requestAction.equals("POST")) {
               query = HttpServer.parseQueryString(requestBody);
-                Assign assign = new Assign();
+                Join join = new Join();
 
-                String tmpMemberName = Assign.decodeValue(query.get("memberName"));
-                String tmpProjectName = Assign.decodeValue(query.get("projectName"));
-                assign.setMemberName(tmpMemberName);
-                assign.setProjectName(tmpProjectName);
-                assignDao.insert(assign);
+                String tmpMemberName = Join.decodeValue(query.get("memberName"));
+                String tmpProjectName = Join.decodeValue(query.get("projectName"));
+                join.setMemberName(tmpMemberName);
+                join.setProjectName(tmpProjectName);
+                joinDao.insert(join);
                 outputStream.write(("HTTP/1.1 302 Redirect\r\n" +
                         "Location: http://localhost:8080/JoinTables.html\r\n" +
                         "Connection: close\r\n" +
@@ -64,7 +64,7 @@ public class AssignController implements HttpController {
     }
 
     public String getBody() throws SQLException {
-        String body = assignDao.listAll().stream()
+        String body = joinDao.listAll().stream()
                 .map(p -> String.format("<option id='%s %s'>Project: %s -> %s</option>", p.getMemberName(), p.getProjectName(), p.getProjectName(), p.getMemberName()))
                 .collect(Collectors.joining(""));
         return body;
