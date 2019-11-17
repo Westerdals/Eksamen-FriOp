@@ -1,4 +1,4 @@
-package no.kristiania.webshop;
+package no.kristiania.webshop.memberTests;
 
 import no.kristiania.webshop.members.Member;
 import no.kristiania.webshop.members.MemberController;
@@ -19,7 +19,7 @@ public class MemberHttpControllerTest {
 
         MemberController controller = new MemberController(memberDao);
         assertThat(controller.getBody())
-                .contains("<option value='" + member.getId() + "'>" + member.getName() + "</option>");
+                .contains("<option value='" + member.getId() + "'>" + member.getName() + " " + member.getLName() + "</option>");
     }
 }
 
